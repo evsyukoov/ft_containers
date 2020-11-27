@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/Containers/ListIterator.hpp
+
+D:/Containers/list.hpp
+memory
+-
+cstddef
+-
+ListIterator.hpp
+D:/Containers/ListIterator.hpp
+
+D:/Containers/list_test.cpp
+iostream
+-
+list
+-
+list.hpp
+D:/Containers/list.hpp
+string
+-
+
