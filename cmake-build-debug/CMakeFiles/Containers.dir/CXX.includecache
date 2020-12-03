@@ -6,23 +6,41 @@
 
 #IncludeRegexTransform: 
 
-D:/Containers/ListIterator.hpp
+D:/Containers/MapIterator.hpp
+Tree.hpp
+D:/Containers/Tree.hpp
 
-D:/Containers/list.hpp
+D:/Containers/Tree.hpp
+utility
+-
+functional
+-
+bits/allocator.h
+-
+crtdbg.h
+-
+iostream
+-
+
+D:/Containers/map.hpp
+utility
+-
 memory
+-
+functional
 -
 cstddef
 -
-ListIterator.hpp
-D:/Containers/ListIterator.hpp
-
-D:/Containers/list_test.cpp
 iostream
 -
-list
+MapIterator.hpp
+D:/Containers/MapIterator.hpp
+
+D:/Containers/map_test.cpp
+map
 -
-list.hpp
-D:/Containers/list.hpp
-string
+iostream
 -
+map.hpp
+D:/Containers/map.hpp
 

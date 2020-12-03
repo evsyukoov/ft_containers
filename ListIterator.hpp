@@ -76,9 +76,9 @@ namespace ft {
             return (*this);
         }
 
-        ListIterator       &operator++(int)
+        ListIterator       operator++(int)
         {
-            ListIterator<T> tmp(*this);
+            ListIterator tmp(*this);
             this->operator++();
             return (tmp);
         }
@@ -89,9 +89,9 @@ namespace ft {
             return (*this);
         }
 
-        ListIterator       &operator--(int)
+        ListIterator       operator--(int)
         {
-            ListIterator<T> tmp(*this);
+            ListIterator tmp(*this);
             this->operator--();
             return (tmp);
         }
@@ -168,12 +168,11 @@ namespace ft {
 
         ReverseListIterator       &operator++()
         {
-            if (ptr && ptr->prev)
-                ptr = ptr->prev;
+            ptr = ptr->prev;
             return (*this);
         }
 
-        ReverseListIterator       &operator++(int)
+        ReverseListIterator       operator++(int)
         {
             ReverseListIterator<T> tmp(*this);
             this->operator++();
@@ -182,12 +181,11 @@ namespace ft {
 
         ReverseListIterator        &operator--()
         {
-            if (ptr && ptr->next)
-                ptr = ptr->next;
+            ptr = ptr->next;
             return (*this);
         }
 
-        ReverseListIterator       &operator--(int)
+        ReverseListIterator       operator--(int)
         {
             ReverseListIterator<T> tmp(*this);
             this->operator--();

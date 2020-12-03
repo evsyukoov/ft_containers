@@ -83,7 +83,10 @@
 		<Unit filename="D:/Containers/ListIterator.hpp">
 			<Option target="Containers"/>
 		</Unit>
-		<Unit filename="D:/Containers/Vector.hpp">
+		<Unit filename="D:/Containers/MapIterator.hpp">
+			<Option target="Containers"/>
+		</Unit>
+		<Unit filename="D:/Containers/Tree.hpp">
 			<Option target="Containers"/>
 		</Unit>
 		<Unit filename="D:/Containers/VectorIterator.hpp">
@@ -92,13 +95,19 @@
 		<Unit filename="D:/Containers/list.hpp">
 			<Option target="Containers"/>
 		</Unit>
-		<Unit filename="D:/Containers/list_test.cpp">
+		<Unit filename="D:/Containers/map.hpp">
+			<Option target="Containers"/>
+		</Unit>
+		<Unit filename="D:/Containers/map_test.cpp">
 			<Option target="Containers"/>
 		</Unit>
 		<Unit filename="D:/Containers/queue.hpp">
 			<Option target="Containers"/>
 		</Unit>
 		<Unit filename="D:/Containers/stack.hpp">
+			<Option target="Containers"/>
+		</Unit>
+		<Unit filename="D:/Containers/vector.hpp">
 			<Option target="Containers"/>
 		</Unit>
 		<Unit filename="D:/Containers/CMakeLists.txt">

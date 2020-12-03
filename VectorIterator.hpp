@@ -2,7 +2,7 @@
 #ifndef FT_CONTAINERS_VECTORITERATOR_HPP
 #define FT_CONTAINERS_VECTORITERATOR_HPP
 
-//#include "Vector.hpp"
+//#include "vector.hpp"
 
 namespace ft
 {
@@ -46,16 +46,18 @@ namespace ft
         {
             return (ptr);
         }
-		VectorIterator &operator++(int)
+		VectorIterator operator++(int)
 		{
-			ptr++;
-			return (*this);
+            VectorIterator iter(*this);
+            this->ptr++;
+			return (iter);
 		}
 
-		VectorIterator &operator+(int a)
+		VectorIterator operator+(int a)
 		{
-			ptr += a;
-			return (*this);
+		    VectorIterator iter(*this);
+			iter.ptr += a;
+			return (iter);
 		}
 
 		VectorIterator &operator+=(int a)
@@ -70,22 +72,21 @@ namespace ft
 			return (*this);
 		}
 
-		VectorIterator &operator--(int)
+		VectorIterator operator--(int)
 		{
-			ptr--;
-			return (*this);
+            VectorIterator iter(*this);
+            this->ptr--;
+			return (iter);
 		}
 
-		VectorIterator &operator-(int a)
+		VectorIterator operator-(int a)
 		{
-			ptr -= a;
-			return (*this);
+			return this->operator+(-a);
 		}
 
 		VectorIterator &operator-=(int a)
 		{
-			ptr -= a;
-			return (*this);
+			return operator+=(-a);
 		}
 
 		VectorIterator &operator--()
@@ -163,16 +164,18 @@ namespace ft
 
         //переопределение операторов
 
-        ReverseVectorIterator &operator++(int)
+        ReverseVectorIterator operator++(int)
         {
-            ptr--;
-            return (*this);
+            ReverseVectorIterator iter(*this);
+            this->ptr--;
+            return (iter);
         }
 
-        ReverseVectorIterator &operator+(int a)
+        ReverseVectorIterator operator+(int a)
         {
-            ptr -= a;
-            return (*this);
+            ReverseVectorIterator iter(*this);
+            iter.ptr -= a;
+            return (iter);
         }
 
         ReverseVectorIterator &operator+=(int a)
@@ -187,16 +190,16 @@ namespace ft
             return (*this);
         }
 
-        ReverseVectorIterator &operator--(int)
+        ReverseVectorIterator operator--(int)
         {
-            ptr++;
-            return (*this);
+            ReverseVectorIterator iter(*this);
+            this->ptr++;
+            return (iter);
         }
 
-        ReverseVectorIterator &operator-(int a)
+        ReverseVectorIterator operator-(int a)
         {
-            ptr += a;
-            return (*this);
+            return this->operator+(-a);
         }
 
         ReverseVectorIterator &operator-=(int a)

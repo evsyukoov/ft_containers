@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Containers.dir/list_test.cpp.obj"
+  "CMakeFiles/Containers.dir/map_test.cpp.obj"
   "Containers.exe"
   "Containers.exe.manifest"
   "Containers.pdb"
