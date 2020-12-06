@@ -6,16 +6,17 @@
 #include "Tree.hpp"
 
 namespace ft {
-    template < class Key, class T, class Compare >
+
+    template < class Key, class T, class Compare, class Alloc >
 
     class MapIterator {
     protected:
        s_tree<Key, T> *ptr;
-       Tree<Key, T, Compare> tree;
+       Tree<Key, T, Compare, Alloc> tree;
 
     public:
 
-        MapIterator(Tree<Key, T, Compare> tree)
+        MapIterator(Tree<Key, T, Compare, Alloc> &tree)
         {
             this->tree = tree;
         }
@@ -27,17 +28,18 @@ namespace ft {
 
 
         //Coplien's form
-        MapIterator() {
-            ptr = 0;
-        }
 
         virtual ~MapIterator() {}
 
-        MapIterator(const MapIterator<Key, T, Compare> &copy) {
+        MapIterator(){
+            ptr = 0;
+        }
+
+        MapIterator(const MapIterator<Key, T, Compare, Alloc> &copy) {
             this->ptr = copy.ptr;
         }
 
-        MapIterator &operator=(const MapIterator<Key, T, Compare> &copy) {
+        MapIterator &operator=(const MapIterator<Key, T, Compare, Alloc> &copy) {
             this->ptr = copy.ptr;
             return (*this);
         }
@@ -89,16 +91,16 @@ namespace ft {
         }
     };
 
-    template < class Key, class T, class Compare >
+    template < class Key, class T, class Compare, class Alloc >
     class ReverseMapIterator
     {
     protected:
         s_tree<Key, T> *ptr;
-        Tree<Key, T, Compare> tree;
+        Tree<Key, T, Compare, Alloc> tree;
 
     public:
 
-        ReverseMapIterator(Tree<Key, T, Compare> tree)
+        ReverseMapIterator(Tree<Key, T, Compare, Alloc> tree)
         {
             this->tree = tree;
         }
@@ -114,11 +116,11 @@ namespace ft {
 
         virtual ~ReverseMapIterator() {}
 
-        ReverseMapIterator(const ReverseMapIterator<Key, T, Compare> &copy) {
+        ReverseMapIterator(const ReverseMapIterator<Key, T, Compare, Alloc> &copy) {
             this->ptr = copy.ptr;
         }
 
-        ReverseMapIterator &operator=(const ReverseMapIterator<Key, T, Compare> &copy) {
+        ReverseMapIterator &operator=(const ReverseMapIterator<Key, T, Compare, Alloc> &copy) {
             this->ptr = copy.ptr;
             return (*this);
         }
@@ -170,32 +172,34 @@ namespace ft {
         }
     };
 
-    template < class Key, class T, class Compare >
-    class ConstReverseMapIterator : public MapIterator<Key, T, Compare>
+    template < class Key, class T, class Compare, class Alloc >
+    class ConstReverseMapIterator : public MapIterator<Key, T, Compare, Alloc>
     {
-        ConstReverseMapIterator(s_tree<Key, T> *ptr) : ReverseMapIterator<Key, T, Compare>(ptr) {}
+    public:
+        ConstReverseMapIterator(s_tree<Key, T> *ptr) : ReverseMapIterator<Key, T, Compare, Alloc>(ptr) {}
 
-        ConstReverseMapIterator() : ReverseMapIterator<Key, T, Compare>() {}
+        ConstReverseMapIterator() : ReverseMapIterator<Key, T, Compare, Alloc>() {}
 
-        ConstReverseMapIterator(const ConstReverseMapIterator<Key, T, Compare> &copy) : ReverseMapIterator<Key, T, Compare>(copy) {}
+        ConstReverseMapIterator(const ConstReverseMapIterator<Key, T, Compare, Alloc> &copy) : ReverseMapIterator<Key, T, Compare, Alloc>(copy) {}
 
-        ConstReverseMapIterator(ReverseMapIterator<Key, T, Compare> iterator) {}
+        ConstReverseMapIterator(ReverseMapIterator<Key, T, Compare, Alloc> iterator) {}
 
         const T &operator*() {
             return *(this->ptr->pair);
         }
     };
 
-    template < class Key, class T, class Compare >
-    class ConstMapIterator : public MapIterator<Key, T, Compare>
+    template < class Key, class T, class Compare, class Alloc >
+    class ConstMapIterator : public MapIterator<Key, T, Compare, Alloc>
     {
-        ConstMapIterator(s_tree<Key, T> *ptr) : ReverseMapIterator<Key, T, Compare>(ptr) {}
+    public:
+        ConstMapIterator(s_tree<Key, T> *ptr) : ReverseMapIterator<Key, T, Compare, Alloc>(ptr) {}
 
-        ConstMapIterator() : ReverseMapIterator<Key, T, Compare>() {}
+        ConstMapIterator() : ReverseMapIterator<Key, T, Compare, Alloc>() {}
 
-        ConstMapIterator(const ConstMapIterator<Key, T, Compare> &copy) : ReverseMapIterator<Key, T, Compare>(copy) {}
+        ConstMapIterator(const ConstMapIterator<Key, T, Compare, Alloc> &copy) : MapIterator<Key, T, Compare, Alloc>(copy) {}
 
-        ConstMapIterator(ReverseMapIterator<Key, T, Compare> iterator) {}
+        ConstMapIterator(MapIterator<Key, T, Compare, Alloc> iterator) {}
 
         const T &operator*() {
             return *(this->ptr->pair);

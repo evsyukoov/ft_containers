@@ -12,7 +12,7 @@
 #include "MapIterator.hpp"
 
 namespace ft {
-    template<class Key, class T, class Compare = std::less<Key>, class Alloc = std::allocator<std::pair<const Key, T> > >
+    template<class Key, class T, class Compare = std::less<Key>, class Alloc = std::allocator<std::pair<Key, T> > >
     class map {
     public:
         typedef Key key_type;
@@ -26,10 +26,10 @@ namespace ft {
         typedef value_type *pointer;
         typedef const value_type *const_pointer;
         //Iterators
-        typedef typename ft::MapIterator<Key, T, Compare> 				        iterator;
-        typedef typename ft::ConstMapIterator<Key, T, Compare> 			        const_iterator;
-        typedef typename ft::ReverseMapIterator<Key, T, Compare> 				reverse_iterator;
-        typedef typename ft::ConstReverseMapIterator<Key, T, Compare> 			const_reverse_iterator;
+        typedef typename ft::MapIterator<Key, T, Compare, Alloc> 				        iterator;
+        typedef typename ft::ConstMapIterator<Key, T, Compare, Alloc> 			        const_iterator;
+        typedef typename ft::ReverseMapIterator<Key, T, Compare, Alloc> 				reverse_iterator;
+        typedef typename ft::ConstReverseMapIterator<Key, T, Compare, Alloc> 			const_reverse_iterator;
         typedef ptrdiff_t difference_type;
         typedef size_t size_type;
 
@@ -68,7 +68,7 @@ namespace ft {
         {
             this->comp = comp;
             this->allocator = alloc;
-            tree = new Tree<Key, T, Compare>(comp);
+            tree = new Tree<Key, T, Compare, Alloc>(comp, allocator);
             _size = 0;
         }
 
@@ -77,22 +77,40 @@ namespace ft {
              const key_compare& comp = key_compare(),
              const allocator_type& alloc = allocator_type())
         {
-
+            this->comp = comp;
+            this->allocator = alloc;
+            tree = new Tree<Key, T, Compare, Alloc>(comp, allocator);
+            _size = 0;
+            this->insert(first, last);
         }
 
         map (const map& x)
         {
-
+            this->comp = x.comp;
+            this->allocator = x.allocator;
+            this->tree = new Tree<Key, T, Compare, Alloc>(comp, allocator);
+            iterator it = x.begin();
+            iterator ite = x.end();
+            this->insert(it, ite);
         }
 
         ~map()
         {
+            clear();
             delete tree;
         }
 
         map& operator= (const map& x)
         {
-
+            clear();
+            delete tree;
+            this->comp = x.comp;
+            this->allocator = x.allocator;
+            this->tree = new Tree<Key, T, Compare, Alloc>(comp, allocator);
+            iterator it = x.begin();
+            iterator ite = x.end();
+            this->insert(it, ite);
+            return (*this);
         }
         //iterators
         iterator       begin()
@@ -102,9 +120,9 @@ namespace ft {
             return it;
         }
 
-        const iterator       begin() const
+        const_iterator       begin() const
         {
-            const_iterator it = iterator(*tree);
+            const_iterator it = const_iterator(*tree);
             it.setPtr(tree->findMin());
             return it;
         }
@@ -116,9 +134,9 @@ namespace ft {
             return (it);
         }
 
-        const iterator        end() const
+        const_iterator        end() const
         {
-            const_iterator it = iterator (*tree);
+            const_iterator it = const_iterator (*tree);
             it.setPtr(tree->getAnEnd());
             return (it);
         }
@@ -171,8 +189,9 @@ namespace ft {
         //Element acess
         mapped_type& operator[] (const key_type& k)
         {
+            mapped_type &m = tree->find(k);
             _size = tree->getSize();
-            return tree->find(k);
+            return m;
         }
 
         //Modifiers
@@ -183,7 +202,7 @@ namespace ft {
             iterator it(*tree);
             it.setPtr(tree->getIter());
             ret = std::make_pair(it, flag);
-            _size += tree->getSize();
+            _size = tree->getSize();
             return (ret);
         }
 
@@ -193,7 +212,7 @@ namespace ft {
             s_tree<Key, T> *ret = tree->add(NULL, val.first, val.second);
             iterator it(*tree);
             it.setPtr(ret);
-            _size += tree->getSize();
+            _size = tree->getSize();
             return (it);
         }
 
@@ -216,6 +235,7 @@ namespace ft {
         size_type erase (const key_type& k)
         {
             s_tree<Key, T> *node = tree->findNode(k);
+            //std::cout << node->pair->first << ":" << node->pair->second << std::endl;
             if (!node)
                 return (0);
             tree->remove(node);
@@ -228,7 +248,8 @@ namespace ft {
             while (first != last)
             {
                 iterator tmp = ++first;
-                erase(--first);
+                --first;
+                erase(first);
                 first = tmp;
             }
         }
@@ -247,7 +268,7 @@ namespace ft {
             _size = x._size;
             x._size = tmp_size;
 
-            Tree<Key, T, Compare> tmp_tree = tree;
+            Tree<Key, T, Compare> *tmp_tree = tree;
             tree = x.tree;
             x.tree = tmp_tree;
         }

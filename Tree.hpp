@@ -23,7 +23,7 @@ struct s_tree {
 
 class MapIterator;
 
-template<class Key, class T, class Compare >
+template<class Key, class T, class Compare, class Alloc = std::allocator<std::pair<Key, T> > >
 class Tree
 {
 
@@ -35,8 +35,14 @@ private:
     Compare comp;
     int tabs;
     size_t size;
+    Alloc allocator;
 
 public:
+
+    Compare getComp() const {
+        return comp;
+    }
+
     size_t getSize() const {
         return size;
     }
@@ -45,22 +51,41 @@ public:
         return iter;
     }
 
-    Tree()
-    {
-        root = NULL;
-        init_begin_end();
-        tabs = 0;
-        size = 0;
-        this->comp = comp;
+    virtual ~Tree() {
+        allocator.deallocate(iter->pair, 1);
+        allocator.deallocate(begin->pair, 1);
+        allocator.deallocate(end->pair, 1);
+        delete iter;
+        delete begin;
+        delete end;
     }
 
-    Tree(Compare comp)
+    Tree  &operator=(const Tree &other)
+    {
+        this->size = other.size;
+        this->end = new s_tree<Key, T>();
+        this->begin = new s_tree<Key, T>();
+        this->iter = new s_tree<Key, T>();
+        std::pair<Key, T> *pair1 = allocator.allocate(1);
+        std::pair<Key, T> *pair2 = allocator.allocate(1);
+        std::pair<Key, T> *pair3 = allocator.allocate(1);
+        this->end->pair = pair1;
+        this->begin->pair = pair2;
+        this->iter->pair = pair3;
+        this->allocator = other.allocator;
+        this->comp = other.comp;
+        this->root = other.root;
+        return (*this);
+    }
+
+    Tree(const Compare comp = Compare(), const Alloc allocator = Alloc())
     {
         root = NULL;
         init_begin_end();
         tabs = 0;
         size = 0;
         this->comp = comp;
+        this->allocator = allocator;
     }
 
     s_tree<Key, T> *getAnEnd() const {
@@ -82,19 +107,17 @@ public:
         iter = new s_tree<Key, T>();
         end->isEnd = true;
         begin->isEnd = true;
-        //begin = end;
-        std::pair<Key, T> *pair1 = new std::pair<Key, T>();
-        std::pair<Key, T> *pair2 = new std::pair<Key, T>();
-        std::pair<Key, T> *pair3 = new std::pair<Key, T>();
+        std::pair<Key, T> *pair1 = allocator.allocate(1);
+        std::pair<Key, T> *pair2 = allocator.allocate(1);
+        std::pair<Key, T> *pair3 = allocator.allocate(1);
         end->pair = pair1;
         begin->pair = pair2;
         iter->pair = pair3;
-
     }
 
     s_tree<Key, T> *new_node(Key key, T val = T()) {
         s_tree<Key, T> *new_node = new s_tree<Key, T>();
-        std::pair<Key, T> *pair = new std::pair<Key, T>();
+        std::pair<Key, T> *pair = allocator.allocate(1);
         *pair = std::make_pair(key, val);
         new_node->pair = pair;
         new_node->isEnd = false;
@@ -213,11 +236,15 @@ public:
                 {
                     if (tree->right != NULL && !tree->right->isEnd)
                         tree = tree->right;
+                    else
+                        break ;
                 }
                 else if (comp(k, tree->pair->first))
                 {
                     if (tree->left != NULL && !tree->left->isEnd)
                         tree = tree->left;
+                    else
+                        break ;
                 }
             }
             return (NULL);
@@ -280,7 +307,7 @@ public:
                 curr->left->parent = NULL;
                 root = curr->left;
             }
-            delete tmp->pair;
+            allocator.deallocate(tmp->pair, 1);
             delete tmp;
             tmp = NULL;
             size--;
@@ -296,7 +323,7 @@ public:
         //если root один
         if (remakeRoot(curr))
             return ;
-        if (!curr->left && !curr->right)
+        if (curr && !curr->left && !curr->right)
         {
             if (curr->parent->left == curr)
                 curr->parent->left = NULL;
@@ -305,7 +332,7 @@ public:
         }
         //усли узел имеет левое поддерево, но не имеет правого
         // (тут же случай для min указывающего на begin)(если min лист)
-        if (curr->left  && (!curr->right)) {
+        if (curr && curr->left  && (!curr->right)) {
             if (curr->parent->right == curr)
                 curr->parent->right = curr->left;
             else if (curr->parent->left == curr)
@@ -314,7 +341,7 @@ public:
         }
         //есть правое поддерево, но нет левого
         //(тут же случай для max указывающнего на end(если max лист)
-        if (curr->right  && (!curr->left)) {
+        if (curr && curr->right  && (!curr->left)) {
             if (curr->parent->right == curr)
                 curr->parent->right = curr->right;
             else if (curr->parent->left == curr)
@@ -323,7 +350,7 @@ public:
         }
 
         //если есть дети надо перецепить самый минимум по правой ветке на место удаляемой ноды
-        if(curr->right && curr->left) {
+        if(curr && curr->right && curr->left) {
             s_tree<Key, T> *min = findMin(curr->right);
             //если правый ребенок не имеет левого поддерева(то есть сам является минимумом)
             if (min == curr->right && curr->right != end) {
@@ -373,7 +400,7 @@ public:
                     delete curr->pair;
                     delete curr;
                     curr = curr->left;
-                    curr->parent = NULL;
+                    allocator.deallocate(curr->pair, 1);
                     root = curr;
                     size--;
                     return ;
@@ -388,8 +415,10 @@ public:
             if (curr == root)
                 root = min;
         }
-        delete curr->pair;
-        delete curr;
+        if (curr) {
+            allocator.deallocate(curr->pair, 1);
+            delete curr;
+        }
         size--;
     }
 
@@ -453,7 +482,7 @@ public:
         {
             Key key = tree->pair->first;
             tree = tree->parent;
-            while (!comp(tree->pair->first, key) && tree)
+            while (tree && !comp(tree->pair->first, key))
                 tree = tree->parent;
         }
         return (tree);
