@@ -88,7 +88,7 @@ namespace ft {
         {
             this->comp = x.comp;
             this->allocator = x.allocator;
-            this->tree = new Tree<Key, T, Compare, Alloc>(comp, allocator);
+            tree = new Tree<Key, T, Compare, Alloc>(comp, allocator);
             iterator it = x.begin();
             iterator ite = x.end();
             this->insert(it, ite);
@@ -115,56 +115,56 @@ namespace ft {
         //iterators
         iterator       begin()
         {
-            iterator it = iterator(*tree);
+            iterator it = iterator(tree);
             it.setPtr(tree->findMin());
             return it;
         }
 
         const_iterator       begin() const
         {
-            const_iterator it = const_iterator(*tree);
+            const_iterator it = const_iterator(tree);
             it.setPtr(tree->findMin());
             return it;
         }
 
         iterator        end()
         {
-            iterator it = iterator (*tree);
+            iterator it = iterator (tree);
             it.setPtr(tree->getAnEnd());
             return (it);
         }
 
         const_iterator        end() const
         {
-            const_iterator it = const_iterator (*tree);
+            const_iterator it = const_iterator (tree);
             it.setPtr(tree->getAnEnd());
             return (it);
         }
 
         reverse_iterator                rbegin()
         {
-            reverse_iterator it = reverse_iterator(*tree);
+            reverse_iterator it = reverse_iterator(tree);
             it.setPtr(tree->findMax());
             return it;
         }
 
         const_reverse_iterator       rbegin() const
         {
-            const_reverse_iterator it = const_reverse_iterator(*tree);
+            const_reverse_iterator it = const_reverse_iterator(tree);
             it.setPtr(tree->findMax());
             return it;
         }
 
         const_reverse_iterator       rend() const
         {
-            const_reverse_iterator it = const_reverse_iterator(*tree);
+            const_reverse_iterator it = const_reverse_iterator(tree);
             it.setPtr(tree->getBegin());
             return it;
         }
 
         reverse_iterator        rend()
         {
-            reverse_iterator it = reverse_iterator (*tree);
+            reverse_iterator it = reverse_iterator (tree);
             it.setPtr(tree->getBegin());
             return (it);
         }
@@ -199,7 +199,7 @@ namespace ft {
         {
             bool flag = tree->add(val.first, val.second);
             std::pair<iterator, bool> ret = std::pair<iterator, bool>();
-            iterator it(*tree);
+            iterator it(tree);
             it.setPtr(tree->getIter());
             ret = std::make_pair(it, flag);
             _size = tree->getSize();
@@ -210,7 +210,7 @@ namespace ft {
         {
             (void)position;
             s_tree<Key, T> *ret = tree->add(NULL, val.first, val.second);
-            iterator it(*tree);
+            iterator it(tree);
             it.setPtr(ret);
             _size = tree->getSize();
             return (it);
@@ -297,7 +297,7 @@ namespace ft {
             s_tree<Key, T> *node = tree->findNode(k);
             if (!node)
                 return (end());
-            iterator it(*tree);
+            iterator it(tree);
             it.setPtr(node);
             return (it);
         }
@@ -307,7 +307,7 @@ namespace ft {
             s_tree<Key, T> *node = tree->findNode(k);
             if (!node)
                 return (end());
-            const_iterator it(*tree);
+            const_iterator it(tree);
             it.setPtr(node);
             return (it);
         }

@@ -6,41 +6,29 @@
 
 #IncludeRegexTransform: 
 
-D:/Containers/MapIterator.hpp
-Tree.hpp
-D:/Containers/Tree.hpp
+/Users/ccarl/Desktop/Ft_containers/VectorIterator.hpp
 
-D:/Containers/Tree.hpp
-utility
+/Users/ccarl/Desktop/Ft_containers/vector.hpp
+VectorIterator.hpp
+/Users/ccarl/Desktop/Ft_containers/VectorIterator.hpp
+cstdio
 -
-functional
+stddef.h
 -
-bits/allocator.h
--
-crtdbg.h
--
-iostream
--
-
-D:/Containers/map.hpp
-utility
+exception
 -
 memory
 -
-functional
+stdexcept
 -
-cstddef
+limits
 -
-iostream
--
-MapIterator.hpp
-D:/Containers/MapIterator.hpp
 
-D:/Containers/map_test.cpp
-map
+/Users/ccarl/Desktop/Ft_containers/vector_test.cpp
+vector
 -
 iostream
 -
-map.hpp
-D:/Containers/map.hpp
+vector.hpp
+/Users/ccarl/Desktop/Ft_containers/vector.hpp
 

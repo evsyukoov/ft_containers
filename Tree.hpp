@@ -7,8 +7,8 @@
 
 #include <utility>
 #include <functional>
-#include <bits/allocator.h>
-#include <crtdbg.h>
+//#include <bits/allocator.h>
+//#include <crtdbg.h>
 #include <iostream>
 
 template<typename Key, typename T>
@@ -51,18 +51,25 @@ public:
         return iter;
     }
 
-    virtual ~Tree() {
-        allocator.deallocate(iter->pair, 1);
-        allocator.deallocate(begin->pair, 1);
-        allocator.deallocate(end->pair, 1);
-        delete iter;
-        delete begin;
-        delete end;
+    virtual ~Tree()
+    {
+			if (root)
+				std::cout << "tree adress: " << this << "root: " << root->pair->first << std::endl;
+			else
+				std::cout << "tree adress root NULL: " << this << std::endl;
+//        	allocator.deallocate(iter->pair, 1);
+//        	allocator.deallocate(begin->pair, 1);
+//        	allocator.deallocate(end->pair, 1);
+//        	delete iter;
+//        	delete begin;
+//        	delete end;
+        	std::cout << std::endl;
+
     }
 
-    Tree  &operator=(const Tree &other)
+    Tree  *operator=(Tree *other)
     {
-        this->size = other.size;
+        this->size = other->size;
         this->end = new s_tree<Key, T>();
         this->begin = new s_tree<Key, T>();
         this->iter = new s_tree<Key, T>();
@@ -72,10 +79,10 @@ public:
         this->end->pair = pair1;
         this->begin->pair = pair2;
         this->iter->pair = pair3;
-        this->allocator = other.allocator;
-        this->comp = other.comp;
-        this->root = other.root;
-        return (*this);
+        this->allocator = other->allocator;
+        this->comp = other->comp;
+        this->root = other->root;
+        return (this);
     }
 
     Tree(const Compare comp = Compare(), const Alloc allocator = Alloc())

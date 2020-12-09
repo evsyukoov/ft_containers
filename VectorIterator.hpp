@@ -294,8 +294,8 @@ namespace ft
             return *(this->ptr + index);
         }
 
-        ConstVectorIterator(VectorIterator<int> iterator) {
-
+        ConstVectorIterator(VectorIterator<T> iterator) {
+			this->ptr = iterator.operator->();
         }
     };
 
@@ -338,8 +338,8 @@ namespace ft
             return *(this->ptr - index);
         }
 
-        ConstReverseVectorIterator(VectorIterator<int> iterator) {
-
+        ConstReverseVectorIterator(VectorIterator<T> iterator) {
+			this->ptr = iterator.operator->();
         }
     };
 }

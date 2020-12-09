@@ -112,8 +112,8 @@ void    iterators_test()
     std::cout << "iterators end ---> begin  my: ";
     printListReverse(my1);
     std::cout << "           ITERATORS OPERATORS TEST " << std::endl;
-    typedef typename std::vector<int>::iterator iterator_lib;
-    typedef typename ft::vector<int>::iterator iterator_my;
+    typedef std::vector<int>::iterator iterator_lib;
+    typedef ft::vector<int>::iterator iterator_my;
     iterator_lib it1 = lib1.begin();
     iterator_lib it2 = lib1.begin();
     print_iterators_info("lib: ", it1, it2);
@@ -193,8 +193,8 @@ void        reverse_iterators_test()
     my1.push_back(4);
     my1.push_back(5);
     std::cout << "           REVERSE ITERATORS OPERATORS TEST " << std::endl;
-    typedef typename std::vector<int>::reverse_iterator iterator_lib;
-    typedef typename ft::vector<int>::reverse_iterator iterator_my;
+    typedef std::vector<int>::reverse_iterator iterator_lib;
+    typedef ft::vector<int>::reverse_iterator iterator_my;
     iterator_lib it1 = lib1.rbegin();
     iterator_lib it2 = lib1.rbegin();
     print_iterators_info("lib: ", it1, it2);
@@ -328,25 +328,25 @@ void    element_access_test()
     ft::vector<int> my((size_t)2, 4);
     std::cout << "lib[1]: " << lib[1] << ", vector size: " << lib.size() << std::endl;
     std::cout << " my[1]: " << my[1] << ", vector size: " << my.size() << std::endl;
-    std::cout << std::endl;
-    std::cout << "lib[2]: " << lib[2] << ", vector size: " << lib.size() << std::endl;
-    std::cout << " my[2]: " << my[2] << ", vector size: " << my.size() << std::endl;
-    std::cout << std::endl;
+    //std::cout << std::endl;
+    //std::cout << "lib[2]: " << lib[3] << ", vector size: " << lib.size() << std::endl;
+    //std::cout << " my[2]: " << my[3] << ", vector size: " << my.size() << std::endl;
+    //std::cout << std::endl;
     std::cout << "lib.at(1): " << lib.at(1) << ", vector size: " << lib.size() << std::endl;
     std::cout << " my.at(1): " << my.at(1) << ", vector size: " << my.size() << std::endl;
     std::cout << std::endl;
-//    try {
-//        std::cout << "lib.at(2): " << lib.at(2) << ", vector size: " << lib.size() << std::endl;
-//    }
-//    catch (std::out_of_range e) {
-//        std::cerr << e.what() << std::endl;
-//    }
-//    try {
-//        std::cout << " my.at(2): " << my.at(2) << ", vector size: " << my.size() << std::endl;
-//    }
-//    catch (std::out_of_range e) {
-//        std::cerr << e.what() << std::endl;
-//    }
+    try {
+        std::cout << "lib.at(2): " << lib.at(2) << ", vector size: " << lib.size() << std::endl;
+    }
+    catch (std::out_of_range e) {
+        std::cerr << e.what() << std::endl;
+    }
+    try {
+        std::cout << " my.at(2): " << my.at(2) << ", vector size: " << my.size() << std::endl;
+    }
+    catch (std::out_of_range e) {
+        std::cerr << e.what() << std::endl;
+    }
 
     std::cout << "lib front(): " << lib.front() << " ,content: ";
     printList(lib);
@@ -439,7 +439,7 @@ void    modifiers_test()
     vector_info(vLib, "lib", "clear test");
     vector_info(vMy, " my", "clear test");
 
-    //push_pop_tests();
+    push_pop_tests();
 
 }
 
@@ -521,16 +521,16 @@ void    push_pop_tests()
 
     std::cout << "INSERT LIB" << std::endl;
     vLib4.insert(vLib4.end(),(size_t)4, 11);
-    vector_info(vLib4, "", "insert 2 values in end");
+    vector_info(vLib4, "", "insert 4 values in end");
     vMy4.insert(vMy4.end(),(size_t)4, 11);
     std::cout << "INSERT MY" << std::endl;
-    vector_info(vMy4, "", "insert 2 values in end");
+    vector_info(vMy4, "", "insert 4 values in end");
     std::cout << "INSERT LIB" << std::endl;
-    vLib4.insert(vLib4.end(),(size_t)3, 8);
-    vector_info(vLib4, "", "insert 3 values in end");
+    vLib4.insert(vLib4.end(),(size_t)6, 8);
+    vector_info(vLib4, "", "insert 6 values in end");
     std::cout << "INSERT MY" << std::endl;
-    vMy4.insert(vMy4.end(),(size_t)3, 8);
-    vector_info(vMy4, "", "insert 3 values in end");
+    vMy4.insert(vMy4.end(),(size_t)6, 8);
+    vector_info(vMy4, "", "insert 6 values in end");
 
     std::cout << "INSERT LIB" << std::endl;
     vLib4.insert(vLib4.begin(),(size_t)2, 11);
@@ -705,11 +705,14 @@ void    operators()
     a3.pop_back();
     b1.push_back(2);
     b3.pop_back();
-
+//
     std::cout << "Lib operators: " << std::endl;
+    printList(a1);
+    printList(a2);
+    printList(a3);
     operators_test(a1, a2, a3);
-    std::cout << "My operators: " << std::endl;
-    operators_test(b1, b2, b3);
+//    std::cout << "My operators: " << std::endl;
+//    operators_test(b1, b2, b3);
 //    printList(b1);
 //    printList(b2);
 //    std::cout << (a1 > a2) << std::endl;
@@ -726,5 +729,4 @@ int     main()
     erase_test();
     swap_test();
     operators();
-    
 }

@@ -1,9 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Containers.dir/map_test.cpp.obj"
-  "Containers.exe"
-  "Containers.exe.manifest"
+  "CMakeFiles/Containers.dir/vector_test.cpp.o"
+  "Containers"
   "Containers.pdb"
-  "libContainers.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

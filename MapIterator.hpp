@@ -12,11 +12,11 @@ namespace ft {
     class MapIterator {
     protected:
        s_tree<Key, T> *ptr;
-       Tree<Key, T, Compare, Alloc> tree;
+       Tree<Key, T, Compare, Alloc> *tree;
 
     public:
 
-        MapIterator(Tree<Key, T, Compare, Alloc> &tree)
+        MapIterator(Tree<Key, T, Compare, Alloc> *tree)
         {
             this->tree = tree;
         }
@@ -41,6 +41,7 @@ namespace ft {
 
         MapIterator &operator=(const MapIterator<Key, T, Compare, Alloc> &copy) {
             this->ptr = copy.ptr;
+            this->tree = copy.tree;
             return (*this);
         }
 
@@ -69,7 +70,7 @@ namespace ft {
         }
 
         MapIterator &operator++() {
-            ptr = tree.inc(ptr);
+            ptr = tree->inc(ptr);
             return (*this);
         }
 
@@ -80,7 +81,7 @@ namespace ft {
         }
 
         MapIterator &operator--() {
-            ptr = tree.dec(ptr);
+            ptr = tree->dec(ptr);
             return (*this);
         }
 
@@ -96,11 +97,11 @@ namespace ft {
     {
     protected:
         s_tree<Key, T> *ptr;
-        Tree<Key, T, Compare, Alloc> tree;
+        Tree<Key, T, Compare, Alloc> *tree;
 
     public:
 
-        ReverseMapIterator(Tree<Key, T, Compare, Alloc> tree)
+        ReverseMapIterator(Tree<Key, T, Compare, Alloc> *tree)
         {
             this->tree = tree;
         }
@@ -150,7 +151,7 @@ namespace ft {
         }
 
         ReverseMapIterator &operator++() {
-            ptr = tree.dec(ptr);
+            ptr = tree->dec(ptr);
             return (*this);
         }
 
@@ -161,7 +162,7 @@ namespace ft {
         }
 
         ReverseMapIterator &operator--() {
-            ptr = tree.inc(ptr);
+            ptr = tree->inc(ptr);
             return (*this);
         }
 

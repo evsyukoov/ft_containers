@@ -62,7 +62,7 @@ namespace ft
 			    return ;
             }
 			arr = allocator.allocate(_capacity);
-			for (int i = 0; i < _size; i++)
+			for (size_type i = 0; i < _size; i++)
 				arr[i] = val;
 		}
 
@@ -80,7 +80,7 @@ namespace ft
                 return ;
             }
             arr = allocator.allocate(_capacity);
-            for (int i = 0; i < _size;i++)
+            for (size_type i = 0; i < _size;i++)
             {
                 arr[i] = *first;
                 first++;
@@ -93,7 +93,7 @@ namespace ft
 			this->_capacity = x._capacity;
 			this->_size = x._size;
 			this->arr = allocator.allocate(_capacity);
-			for (int i = 0; i < _size; i++)
+			for (size_type i = 0; i < _size; i++)
 				arr[i] = x[i];
 		}
 
@@ -109,7 +109,7 @@ namespace ft
 			this->_capacity = x._capacity;
 			this->_size = x._size;
 			this->arr = allocator.allocate(_capacity);
-			for (int i = 0; i < _size; i++)
+			for (size_type i = 0; i < _size; i++)
 				arr[i] = x[i];
 			return (*this);
 		}
@@ -184,15 +184,15 @@ namespace ft
             }
 			if (n <= _size)
 			{
-			    for (int i = 0; i < n; i++)
+			    for (size_type i = 0; i < n; i++)
 					resized[i] = arr[i];
 			    allocator.deallocate(arr, _capacity);
 				arr = resized;
 			}
 			else {
-                for (int i = 0; i < _size; i++)
+                for (size_type i = 0; i < _size; i++)
                     resized[i] = arr[i];
-                for(int i = _size;i < n;i++)
+                for(size_type i = _size;i < n;i++)
                     resized[i] = val;
 			    allocator.deallocate(arr, _capacity);
 			    arr = resized;
@@ -216,7 +216,7 @@ namespace ft
         {
 		    if (n > _capacity){
                 pointer tmp = allocator.allocate(n);
-                for (int i = 0; i < _size; i++)
+                for (size_type i = 0; i < _size; i++)
                     tmp[i] = arr[i];
                 allocator.deallocate(arr, _capacity);
                 arr = tmp;
@@ -244,7 +244,7 @@ namespace ft
 		    if (n >= _size)
 		        throw std::out_of_range("Out of range exception");
 		    else
-		        this->operator[](n);
+		        return (this->operator[](n));
         }
 
         const_reference at (size_type n) const
@@ -295,7 +295,7 @@ namespace ft
             if (n > _capacity)
                 _capacity = n;
             arr = allocator.allocate(_capacity);
-            int count = 0;
+            size_type count = 0;
             while (count < n) {
                 push_back(val);
                 count++;
@@ -426,31 +426,29 @@ namespace ft
 
         iterator erase (iterator position)
         {
-		    iterator start = this->begin();
-		    size_type i = 0;
-		    pointer tmp = position.operator->();
-		    while (i < _size - 1)
+		    ptrdiff_t diff = position.operator->() - this->begin().operator->();
+		    size_type index = (size_type)diff;
+		    while (diff < (ptrdiff_t)_size - 1)
             {
-		        tmp[i] = tmp[i + 1];
-		        i++;
+		        arr[diff] = arr[diff + 1];
+		        diff++;
             }
 		    _size--;
-		    return (iterator(tmp));
+		    return (iterator(arr + index));
         }
 
-        iterator erase (iterator first, iterator last)
+        iterator erase(iterator first, iterator last)
         {
-		    iterator start = this->begin();
-		    size_type i = 0;
 		    size_type n = iterator_dist(first, last);
-            pointer tmp = first.operator->();
-		    while (i < _size - 1)
+			ptrdiff_t diff = first.operator->() - this->begin().operator->();
+			size_type index = (size_type)diff;
+		    while (diff < (ptrdiff_t)_size - 1)
             {
-		        tmp[i] = tmp[i + n];
-		        i++;
+		        arr[diff] = arr[diff + n];
+		        diff++;
             }
 		    _size -= n;
-            return (iterator(tmp));
+            return (iterator(arr + index));
         }
 
         void swap (vector& x)
@@ -480,10 +478,10 @@ namespace ft
                 if (_capacity == 0)
                     reserve(n);
                 else {
-                    if (_size + n > _size * 2)
+                    if (_size + n > _capacity * 2)
                         reserve(_size + n);
                     else
-                        reserve(_size * 2);
+                        reserve(_capacity * 2);
                 }
             }
         }
