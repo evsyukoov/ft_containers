@@ -41,6 +41,7 @@ namespace ft {
             this->allocator = alloc;
             border = this->new_node(head, tail);
             border->elem = allocator.allocate(1);
+			allocator.construct(border->elem, 0);
             this->head = border;
             this->tail = border;
             border->prev = tail;
@@ -54,6 +55,7 @@ namespace ft {
             this->allocator = alloc;
             border = this->new_node(head, tail);
             border->elem = allocator.allocate(1);
+			allocator.construct(border->elem, 0);
             this->head = border;
             this->tail = border;
             border->prev = tail;
@@ -74,6 +76,7 @@ namespace ft {
             this->allocator = alloc;
             border = this->new_node(head, tail);
             border->elem = allocator.allocate(1);
+			allocator.construct(border->elem, 0);
             this->head = border;
             this->tail = border;
             border->prev = tail;
@@ -91,6 +94,7 @@ namespace ft {
             this->allocator = x.allocator;
             border = this->new_node(head, tail);
             border->elem = allocator.allocate(1);
+			allocator.construct(border->elem, 0);
             this->head = border;
             this->tail = border;
             border->prev = tail;
@@ -120,6 +124,7 @@ namespace ft {
             this->allocator = x.allocator;
             border = this->new_node(head, tail);
             border->elem = allocator.allocate(1);
+			allocator.construct(border->elem, 0);
             this->head = border;
             this->tail = border;
             border->prev = tail;

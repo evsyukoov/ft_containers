@@ -936,16 +936,16 @@ int     main()
    access_test();
    modifiers_test();
    
-//   std::list<int> a1;
-//   std::list<int> a2;
-//   std::list<int> a3;
-//   ft::list<int> b1;
-//   ft::list<int> b2;
-//   ft::list<int> b3;
-//    std::cout << "OPERATORS" << std::endl;
-//   std::cout << "Lib operators: " << std::endl;
-//   operators_test(a1, a2, a3);
-//    std::cout << "My operators: " << std::endl;
-//   operators_test(b1, b2, b3);
+   std::list<int> a1;
+   std::list<int> a2;
+   std::list<int> a3;
+   ft::list<int> b1;
+   ft::list<int> b2;
+   ft::list<int> b3;
+    std::cout << "OPERATORS" << std::endl;
+   std::cout << "Lib operators: " << std::endl;
+   operators_test(a1, a2, a3);
+    std::cout << "My operators: " << std::endl;
+   operators_test(b1, b2, b3);
 }
 
