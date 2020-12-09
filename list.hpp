@@ -38,10 +38,9 @@ namespace ft {
         //Constructors
         explicit list (const allocator_type& alloc = allocator_type())
         {
-            this->allocator = allocator;
+            this->allocator = alloc;
             border = this->new_node(head, tail);
             border->elem = allocator.allocate(1);
-           //*border->elem = 0;
             this->head = border;
             this->tail = border;
             border->prev = tail;
@@ -52,10 +51,9 @@ namespace ft {
         explicit list (size_type n, const value_type& val = value_type(),
                        const allocator_type& alloc = allocator_type())
         {
-            this->allocator = allocator;
+            this->allocator = alloc;
             border = this->new_node(head, tail);
             border->elem = allocator.allocate(1);
-            //*border->elem = 0;
             this->head = border;
             this->tail = border;
             border->prev = tail;
@@ -73,10 +71,9 @@ namespace ft {
         list (InputIterator first, InputIterator last,
               const allocator_type& alloc = allocator_type())
         {
-            this->allocator = allocator;
+            this->allocator = alloc;
             border = this->new_node(head, tail);
             border->elem = allocator.allocate(1);
-           // *border->elem = 0;
             this->head = border;
             this->tail = border;
             border->prev = tail;
@@ -94,7 +91,6 @@ namespace ft {
             this->allocator = x.allocator;
             border = this->new_node(head, tail);
             border->elem = allocator.allocate(1);
-            //*border->elem = 0;
             this->head = border;
             this->tail = border;
             border->prev = tail;
@@ -120,10 +116,10 @@ namespace ft {
         list& operator = (const list& x)
         {
             clear();
+            deleteElem(this->border);
             this->allocator = x.allocator;
             border = this->new_node(head, tail);
             border->elem = allocator.allocate(1);
-            //*border->elem = 0;
             this->head = border;
             this->tail = border;
             border->prev = tail;
@@ -268,8 +264,6 @@ namespace ft {
 
         void pop_front()
         {
-            if (len == 0)
-                return ;
             LinkedList<value_type> *new_head = head->next;
             allocator.destroy(head->elem);
             allocator.deallocate(head->elem, 1);

@@ -529,7 +529,7 @@ namespace ft
     {
         if (lhs.size() != rhs.size())
             return (false);
-        for(int i = 0; i < (int)lhs.size(); i++)
+        for(size_t i = 0; i < lhs.size(); i++)
         {
              if (lhs[i] != rhs[i])
                  return (false);
@@ -553,9 +553,7 @@ namespace ft
         		return (true);
         	i++;
 		}
-//        if (i == lhs.size() && i != rhs.size())
-//        	return (false);
-        if (i == rhs.size() && i != lhs.size())
+        if (i == lhs.size() && i != rhs.size())
         	return (true);
         return (false);
     }
@@ -569,13 +567,13 @@ namespace ft
     template <class T, class Alloc>
     bool operator <= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
     {
-        return (lhs == rhs || lhs < rhs);
+        return (lhs < rhs || lhs == rhs);
     }
 
     template <class T, class Alloc>
     bool operator >= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
     {
-        return (lhs == rhs || lhs > rhs);
+        return (!(lhs < rhs));
     }
 
     template <class T, class Alloc>

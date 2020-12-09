@@ -338,13 +338,13 @@ void    element_access_test()
     try {
         std::cout << "lib.at(2): " << lib.at(2) << ", vector size: " << lib.size() << std::endl;
     }
-    catch (std::out_of_range e) {
+    catch (std::out_of_range &e) {
         std::cerr << e.what() << std::endl;
     }
     try {
         std::cout << " my.at(2): " << my.at(2) << ", vector size: " << my.size() << std::endl;
     }
-    catch (std::out_of_range e) {
+    catch (std::out_of_range &e) {
         std::cerr << e.what() << std::endl;
     }
 
@@ -696,6 +696,12 @@ void    operators()
     b3.push_back(20);
     b3.push_back(10);
     std::cout << "OPERATORS" << std::endl;
+    std::cout << "a: ";
+    printList(a1);
+	std::cout << "b: ";
+    printList(a2);
+	std::cout << "c: ";
+    printList(a3);
     std::cout << "Lib operators: " << std::endl;
     operators_test(a1, a2, a3);
     std::cout << "My operators: " << std::endl;
@@ -705,18 +711,34 @@ void    operators()
     a3.pop_back();
     b1.push_back(2);
     b3.pop_back();
-//
+
+	std::cout << "a: ";
+	printList(a1);
+	std::cout << "b: ";
+	printList(a2);
+	std::cout << "c: ";
+	printList(a3);
     std::cout << "Lib operators: " << std::endl;
-//    printList(a1);
-//    printList(a2);
-//    printList(a3);
+
     operators_test(a1, a2, a3);
     std::cout << "My operators: " << std::endl;
     operators_test(b1, b2, b3);
-//    printList(b1);
-//    printList(b2);
-//    std::cout << (a1 > a2) << std::endl;
-//    std::cout << (b1 >= b2) << std::endl;
+
+	a1.insert(++a1.begin(), 20);
+	b1.insert(++b1.begin(), 20);
+
+	std::cout << "a: ";
+	printList(a1);
+	std::cout << "b: ";
+	printList(a2);
+	std::cout << "c: ";
+	printList(a3);
+	std::cout << "Lib operators: " << std::endl;
+
+	operators_test(a1, a2, a3);
+	std::cout << "My operators: " << std::endl;
+	operators_test(b1, b2, b3);
+
 }
 
 int     main()

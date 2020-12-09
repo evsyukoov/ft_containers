@@ -108,7 +108,9 @@ namespace ft {
 
         ConstListIterator(const ListIterator<T> &copy) : ListIterator<T>(copy) {}
 
-        ConstListIterator(ListIterator<T> iterator) {}
+        ConstListIterator(ListIterator<T> iterator) {
+        	this->ptr = iterator.operator->();
+        }
 
         const T &operator*() {
             return *(this->ptr->elem);
@@ -203,7 +205,9 @@ namespace ft {
 
         ConstReverseListIterator(const ReverseListIterator<T> &copy) : ReverseListIterator<T>(copy) {}
 
-        ConstReverseListIterator(ReverseListIterator<T> iterator) {}
+        ConstReverseListIterator(ReverseListIterator<T> iterator) {
+        	this->ptr = iterator.operator->();
+        }
 
         const T &operator*() {
             return *(this->ptr->elem);

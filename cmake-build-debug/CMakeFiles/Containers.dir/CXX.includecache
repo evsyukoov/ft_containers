@@ -6,29 +6,23 @@
 
 #IncludeRegexTransform: 
 
-/Users/ccarl/Desktop/Ft_containers/VectorIterator.hpp
+/Users/ccarl/Desktop/Ft_containers/ListIterator.hpp
 
-/Users/ccarl/Desktop/Ft_containers/vector.hpp
-VectorIterator.hpp
-/Users/ccarl/Desktop/Ft_containers/VectorIterator.hpp
-cstdio
--
-stddef.h
--
-exception
--
+/Users/ccarl/Desktop/Ft_containers/list.hpp
 memory
 -
-stdexcept
+cstddef
 -
-limits
--
+ListIterator.hpp
+/Users/ccarl/Desktop/Ft_containers/ListIterator.hpp
 
-/Users/ccarl/Desktop/Ft_containers/vector_test.cpp
-vector
--
+/Users/ccarl/Desktop/Ft_containers/list_test.cpp
 iostream
 -
-vector.hpp
-/Users/ccarl/Desktop/Ft_containers/vector.hpp
+list
+-
+list.hpp
+/Users/ccarl/Desktop/Ft_containers/list.hpp
+string
+-
 
