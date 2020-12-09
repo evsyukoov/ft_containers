@@ -29,7 +29,9 @@ namespace ft {
 
         //Coplien's form
 
-        virtual ~MapIterator() {}
+        virtual ~MapIterator() {
+
+        }
 
         MapIterator(){
             ptr = 0;

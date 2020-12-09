@@ -68,38 +68,38 @@ void    constructors_test()
     printMap(lib2);
     std::cout << " my constructor range content: ";
     printMap(my2);
-//
-//    std::map<int, int> lib3(++lib1.begin(), --lib1.end());
-//    ft::map<int, int> my3(++my1.begin(), --my1.end());
-//    std::cout << "lib constructor range content: ";
-//    printMap(lib3);
-//    std::cout << " my constructor range content: ";
-//    printMap(my3);
-//
-//    std::cout << std::endl;
-//    std::map<int, int> lib4(lib3);
-//    ft::map<int, int> my4(my3);
-//    std::cout << "lib constructor copy content: ";
-//    printMap(lib4);
-//    std::cout << " my constructor copy content: ";
-//    printMap(my4);
-//
-//    std::cout << std::endl;
-//    lib4 = lib1;
-//    my4 = my1;
-//    std::cout << "lib assignation content: ";
-//    printMap(lib4);
-//    std::cout << " my assignation content: ";
-//    printMap(my4);
-//
-//    std::map<int, int> lib5;
-//    ft::map<int, int> my5;
-//    lib4 = lib5;
-//    my4 = my5;
-//    std::cout << "lib assignation content: ";
-//    printMap(lib4);
-//    std::cout << " my assignation content: ";
-//    printMap(my4);
+
+    std::map<int, int> lib3(++lib1.begin(), --lib1.end());
+    ft::map<int, int> my3(++my1.begin(), --my1.end());
+    std::cout << "lib constructor range content: ";
+    printMap(lib3);
+    std::cout << " my constructor range content: ";
+    printMap(my3);
+
+    std::cout << std::endl;
+    std::map<int, int> lib4(lib3);
+    ft::map<int, int> my4(my3);
+    std::cout << "lib constructor copy content: ";
+    printMap(lib4);
+    std::cout << " my constructor copy content: ";
+    printMap(my4);
+
+    std::cout << std::endl;
+    lib4 = lib1;
+    my4 = my1;
+    std::cout << "lib assignation content: ";
+    printMap(lib4);
+    std::cout << " my assignation content: ";
+    printMap(my4);
+
+    std::map<int, int> lib5;
+    ft::map<int, int> my5;
+    lib4 = lib5;
+    my4 = my5;
+    std::cout << "lib assignation content: ";
+    printMap(lib4);
+    std::cout << " my assignation content: ";
+    printMap(my4);
 }
 
 void    iterators_test()
@@ -929,11 +929,11 @@ void        different_tests()
 
 int main() {
     constructors_test();
-//    iterators_test();
-//    capacity_test();
-//    access_tests();
-//    insert_test();
-//    erase_test();
-//    swap_test();
-//    observers_test();
+    iterators_test();
+    capacity_test();
+    access_tests();
+    //insert_test();
+    erase_test();
+    swap_test();
+    //observers_test();
 }

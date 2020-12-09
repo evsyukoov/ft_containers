@@ -53,18 +53,12 @@ public:
 
     virtual ~Tree()
     {
-			if (root)
-				std::cout << "tree adress: " << this << "root: " << root->pair->first << std::endl;
-			else
-				std::cout << "tree adress root NULL: " << this << std::endl;
-//        	allocator.deallocate(iter->pair, 1);
-//        	allocator.deallocate(begin->pair, 1);
-//        	allocator.deallocate(end->pair, 1);
-//        	delete iter;
-//        	delete begin;
-//        	delete end;
-        	std::cout << std::endl;
-
+    	allocator.deallocate(iter->pair, 1);
+    	allocator.deallocate(begin->pair, 1);
+    	allocator.deallocate(end->pair, 1);
+    	delete iter;
+    	delete begin;
+    	delete end;
     }
 
     Tree  *operator=(Tree *other)

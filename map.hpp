@@ -198,10 +198,9 @@ namespace ft {
         std::pair<iterator,bool> insert (const value_type& val)
         {
             bool flag = tree->add(val.first, val.second);
-            std::pair<iterator, bool> ret = std::pair<iterator, bool>();
-            iterator it(tree);
+            iterator it = iterator (tree);
             it.setPtr(tree->getIter());
-            ret = std::make_pair(it, flag);
+			std::pair<iterator, bool> ret(it, flag);
             _size = tree->getSize();
             return (ret);
         }
@@ -221,7 +220,7 @@ namespace ft {
         {
             while (first != last)
             {
-                insert(*first);
+                insert(first, *first);
                 first++;
             }
         }
@@ -235,7 +234,6 @@ namespace ft {
         size_type erase (const key_type& k)
         {
             s_tree<Key, T> *node = tree->findNode(k);
-            //std::cout << node->pair->first << ":" << node->pair->second << std::endl;
             if (!node)
                 return (0);
             tree->remove(node);
@@ -275,7 +273,7 @@ namespace ft {
 
         void clear()
         {
-            erase(begin(), end());
+        	erase(begin(), end());
         }
 
         //Observers

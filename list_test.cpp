@@ -889,22 +889,13 @@ void    reverse_test()
 template <typename T>
 void   operators_test(T &a, T &b, T &c)
 {
-
-    a.push_back(10);
-    a.push_back(20);
-    a.push_back(30);
-    b.push_back(10);
-    b.push_back(20);
-    b.push_back(30);
-    c.push_back(30);
-    c.push_back(20);
-    c.push_back(10);
-    if (a == b) std::cout << "a and b are equal\n";
-    if (b != c) std::cout << "b and c are not equal\n";
-    if (b < c) std::cout << "b is less than c\n";
-    if (c > b) std::cout << "c is greater than b\n";
-    if (a <= b) std::cout << "a is less than or equal to b\n";
-    if (a >= b) std::cout << "a is greater than or equal to b\n";
+	if (a == b) std::cout << "a and b are equal\n";
+	if (b != c) std::cout << "b and c are not equal\n";
+	if (b < c) std::cout << "b is less than c\n";
+	if (c > b) std::cout << "c is greater than b\n";
+	if (a <= b) std::cout << "a is less than or equal to b\n";
+	if (a >= b) std::cout << "a is greater than or equal to b\n";
+	std::cout << std::endl;
 }
 
 void    operations_test()
@@ -928,6 +919,78 @@ void    modifiers_test()
     std::cout << std::endl;
 }
 
+void    operators()
+{
+	std::cout << "                  OPERATORS TEST" << std::endl;
+	std::list<int> a1;
+	std::list<int> a2;
+	std::list<int> a3;
+	ft::list<int> b1;
+	ft::list<int> b2;
+	ft::list<int> b3;
+	a1.push_back(10);
+	a1.push_back(20);
+	a1.push_back(30);
+	a2.push_back(10);
+	a2.push_back(20);
+	a2.push_back(30);
+	a3.push_back(30);
+	a3.push_back(20);
+	a3.push_back(10);
+
+	b1.push_back(10);
+	b1.push_back(20);
+	b1.push_back(30);
+	b2.push_back(10);
+	b2.push_back(20);
+	b2.push_back(30);
+	b3.push_back(30);
+	b3.push_back(20);
+	b3.push_back(10);
+	std::cout << "a: ";
+	printList(a1);
+	std::cout << "b: ";
+	printList(a2);
+	std::cout << "c: ";
+	printList(a3);
+	std::cout << "Lib operators: " << std::endl;
+	operators_test(a1, a2, a3);
+	std::cout << "My operators: " << std::endl;
+	operators_test(b1, b2, b3);
+
+	a1.push_back(2);
+	a3.pop_back();
+	b1.push_back(2);
+	b3.pop_back();
+
+	std::cout << "a: ";
+	printList(a1);
+	std::cout << "b: ";
+	printList(a2);
+	std::cout << "c: ";
+	printList(a3);
+	std::cout << "Lib operators: " << std::endl;
+
+	operators_test(a1, a2, a3);
+	std::cout << "My operators: " << std::endl;
+	operators_test(b1, b2, b3);
+
+	a1.insert(++a1.begin(), 20);
+	b1.insert(++b1.begin(), 20);
+
+	std::cout << "a: ";
+	printList(a1);
+	std::cout << "b: ";
+	printList(a2);
+	std::cout << "c: ";
+	printList(a3);
+	std::cout << "Lib operators: " << std::endl;
+
+	operators_test(a1, a2, a3);
+	std::cout << "My operators: " << std::endl;
+	operators_test(b1, b2, b3);
+}
+
 int     main()
 {
    constructors_test();
@@ -935,17 +998,6 @@ int     main()
    capacity_test();
    access_test();
    modifiers_test();
-   
-   std::list<int> a1;
-   std::list<int> a2;
-   std::list<int> a3;
-   ft::list<int> b1;
-   ft::list<int> b2;
-   ft::list<int> b3;
-    std::cout << "OPERATORS" << std::endl;
-   std::cout << "Lib operators: " << std::endl;
-   operators_test(a1, a2, a3);
-    std::cout << "My operators: " << std::endl;
-   operators_test(b1, b2, b3);
+   operators();
 }
 

@@ -95,10 +95,10 @@
 		<Unit filename="/Users/ccarl/Desktop/Ft_containers/list.hpp">
 			<Option target="Containers"/>
 		</Unit>
-		<Unit filename="/Users/ccarl/Desktop/Ft_containers/list_test.cpp">
+		<Unit filename="/Users/ccarl/Desktop/Ft_containers/map.hpp">
 			<Option target="Containers"/>
 		</Unit>
-		<Unit filename="/Users/ccarl/Desktop/Ft_containers/map.hpp">
+		<Unit filename="/Users/ccarl/Desktop/Ft_containers/map_test.cpp">
 			<Option target="Containers"/>
 		</Unit>
 		<Unit filename="/Users/ccarl/Desktop/Ft_containers/queue.hpp">

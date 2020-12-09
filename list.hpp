@@ -779,8 +779,8 @@ namespace ft {
             it1++;
             it2++;
         }
-        if (it1 == ite1 && it2 == ite2)
-            return (false);
+        if (it1 == ite1 && it2 != ite2)
+            return (true);
         return (*it1 < *it2);
     }
 
