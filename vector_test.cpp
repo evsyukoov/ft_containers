@@ -6,7 +6,7 @@
 #include <iostream>
 #include "vector.hpp"
 
-void        reverse_iterators_test();
+void    reverse_iterators_test();
 void    push_pop_tests();
 
 template <typename T>
@@ -707,12 +707,12 @@ void    operators()
     b3.pop_back();
 //
     std::cout << "Lib operators: " << std::endl;
-    printList(a1);
-    printList(a2);
-    printList(a3);
+//    printList(a1);
+//    printList(a2);
+//    printList(a3);
     operators_test(a1, a2, a3);
-//    std::cout << "My operators: " << std::endl;
-//    operators_test(b1, b2, b3);
+    std::cout << "My operators: " << std::endl;
+    operators_test(b1, b2, b3);
 //    printList(b1);
 //    printList(b2);
 //    std::cout << (a1 > a2) << std::endl;

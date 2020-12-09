@@ -547,10 +547,16 @@ namespace ft
     bool operator < (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
     {
         size_t i = 0;
-        while (lhs[i] == rhs[i] && i < (size_t)lhs.size() && i < (size_t)rhs.size())
-            i++;
-        if (lhs[i] < rhs[i])
-            return (true);
+        while (i < lhs.size() && i < rhs.size())
+		{
+        	if (lhs[i] < rhs[i])
+        		return (true);
+        	i++;
+		}
+//        if (i == lhs.size() && i != rhs.size())
+//        	return (false);
+        if (i == rhs.size() && i != lhs.size())
+        	return (true);
         return (false);
     }
 
