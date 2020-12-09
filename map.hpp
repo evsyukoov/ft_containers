@@ -197,10 +197,10 @@ namespace ft {
         //Modifiers
         std::pair<iterator,bool> insert (const value_type& val)
         {
-            bool flag = tree->add(val.first, val.second);
             iterator it = iterator (tree);
-            it.setPtr(tree->getIter());
-			std::pair<iterator, bool> ret(it, flag);
+            s_tree<Key, T> *r = tree->add(val.first, val.second);
+            it.setPtr(tree->add(val.first, val.second));
+			std::pair<iterator, bool> ret(it, tree->isAdd());
             _size = tree->getSize();
             return (ret);
         }
@@ -220,7 +220,7 @@ namespace ft {
         {
             while (first != last)
             {
-                insert(first, *first);
+                insert(*first);
                 first++;
             }
         }

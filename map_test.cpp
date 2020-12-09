@@ -415,16 +415,16 @@ void    insert_test()
     std::cout << "insert range  my, content: ";
     my1.insert(my2.begin(), my2.end());
     printMap(my1);
-
+//
     std::map<int, int> lib3;
     ft::map<int, int> my3;
-    lib3[-5] = 0;
-    lib3[38] = 1000;
-    lib3[0] = 1;
+    lib3[1] = 0;
+    lib3[100] = 1000;
+    lib3[10] = 1;
 
-    my3[-5] = 0;
-    my3[38] = 1000;
-    my3[0] = 1;
+    my3[1] = 0;
+    my3[100] = 1000;
+    my3[10] = 1;
 
     std::cout << "insert range lib, content: ";
     lib1.insert(lib3.begin(), lib3.end());
@@ -838,6 +838,7 @@ void        count_test(T &container)
     container ['a']=101;
     container ['c']=202;
     container ['f']=303;
+	container ['t']=303;
     char c;
 
     printMap(container);
@@ -932,8 +933,8 @@ int main() {
     iterators_test();
     capacity_test();
     access_tests();
-    //insert_test();
+    insert_test();
     erase_test();
     swap_test();
-    //observers_test();
+    observers_test();
 }

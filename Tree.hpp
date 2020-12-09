@@ -31,7 +31,7 @@ private:
     s_tree<Key, T> *root;
     s_tree<Key, T> *end;
     s_tree<Key, T> *begin;
-    s_tree<Key, T> *iter;
+    bool 	isAddPair;
     Compare comp;
     int tabs;
     size_t size;
@@ -39,7 +39,12 @@ private:
 
 public:
 
-    Compare getComp() const {
+	bool isAdd() const
+	{
+		return isAddPair;
+	}
+
+	Compare getComp() const {
         return comp;
     }
 
@@ -47,16 +52,10 @@ public:
         return size;
     }
 
-    s_tree<Key, T> *getIter() const {
-        return iter;
-    }
-
     virtual ~Tree()
     {
-    	allocator.deallocate(iter->pair, 1);
     	allocator.deallocate(begin->pair, 1);
     	allocator.deallocate(end->pair, 1);
-    	delete iter;
     	delete begin;
     	delete end;
     }
@@ -105,15 +104,12 @@ public:
     {
         end = new s_tree<Key, T>();
         begin = new s_tree<Key, T>();
-        iter = new s_tree<Key, T>();
         end->isEnd = true;
         begin->isEnd = true;
         std::pair<Key, T> *pair1 = allocator.allocate(1);
         std::pair<Key, T> *pair2 = allocator.allocate(1);
-        std::pair<Key, T> *pair3 = allocator.allocate(1);
         end->pair = pair1;
         begin->pair = pair2;
-        iter->pair = pair3;
     }
 
     s_tree<Key, T> *new_node(Key key, T val = T()) {
@@ -137,51 +133,48 @@ public:
         begin->parent = min;
     }
 
-    bool add(Key key, T val) {
-        bool flag = false;
+    s_tree<Key, T> 	*add(Key key, T val) {
+        isAddPair = false;
         if (!root) {
             root = new_node(key, val);
             root->parent = NULL;
             size++;
             setBorders();
-            iter = root;
-            return (true);
+            return (root);
         }
         s_tree<Key, T> *tree = root;
+		s_tree<Key, T> *t;
         while (tree && !tree->isEnd) {
             if (!comp(key, tree->pair->first) && key != tree->pair->first) {
                 if (tree->right != NULL && !tree->right->isEnd)
                     tree = tree->right;
                 else {
-                    s_tree<Key, T> *t = new_node(key, val);
+                    t = new_node(key, val);
                     tree->right = t;
                     t->parent = tree;
                     size++;
-                    flag = true;
-                    iter = t;
+                    isAddPair = true;
                     break;
                 }
             } else if (comp(key, tree->pair->first)) {
                 if (tree->left != NULL && !tree->left->isEnd)
                     tree = tree->left;
                 else {
-                    s_tree<Key, T> *t = new_node(key, val);
+                    t = new_node(key, val);
                     tree->left = t;
                     size++;
-                    flag = true;
+                    isAddPair = true;
                     t->parent = tree;
-                    iter = t;
                     break;
                 }
             } else {
-                iter = tree;
-                flag = false;
-                break;
+				isAddPair = false;
+				return (tree);
             }
         }
-        if (flag)
+        if (isAddPair)
             setBorders();
-        return (flag);
+        return (t);
     }
 
         s_tree<Key, T> *add(s_tree<Key, T> *position, Key key, T val)
@@ -297,7 +290,8 @@ public:
             s_tree<Key, T> *tmp = root;
             if (curr->right != end)
             {
-                curr->right->left = root->left;
+				s_tree<Key, T> *min = findMin(curr->right);
+                min->left = root->left;
                 curr->left->parent = curr->right;
                 curr->right->parent = NULL;
                 root = curr->right;
