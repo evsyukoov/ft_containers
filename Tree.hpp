@@ -143,7 +143,7 @@ public:
             return (root);
         }
         s_tree<Key, T> *tree = root;
-		s_tree<Key, T> *t;
+		s_tree<Key, T> *t = NULL;
         while (tree && !tree->isEnd) {
             if (!comp(key, tree->pair->first) && key != tree->pair->first) {
                 if (tree->right != NULL && !tree->right->isEnd)
@@ -188,7 +188,7 @@ public:
                 return (root);
             }
             s_tree<Key, T> *tree = root;
-            s_tree<Key, T> *t;
+            s_tree<Key, T> *t = NULL;
             while (tree && !tree->isEnd) {
                 if (!comp(key, tree->pair->first) && key != tree->pair->first) {
                     if (tree->right != NULL && !tree->right->isEnd)
@@ -253,7 +253,7 @@ public:
             return (root->pair->second);
         }
         s_tree<Key, T> *tree = root;
-        s_tree<Key, T> *t;
+        s_tree<Key, T> *t = NULL;
         while (tree && !tree->isEnd) {
             if (tree->pair->first == key)
                 return (tree->pair->second);

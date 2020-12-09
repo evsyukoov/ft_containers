@@ -95,6 +95,12 @@
 		<Unit filename="/Users/ccarl/Desktop/Ft_containers/list.hpp">
 			<Option target="Containers"/>
 		</Unit>
+		<Unit filename="/Users/ccarl/Desktop/Ft_containers/list_test.cpp">
+			<Option target="Containers"/>
+		</Unit>
+		<Unit filename="/Users/ccarl/Desktop/Ft_containers/main.cpp">
+			<Option target="Containers"/>
+		</Unit>
 		<Unit filename="/Users/ccarl/Desktop/Ft_containers/map.hpp">
 			<Option target="Containers"/>
 		</Unit>
@@ -104,10 +110,19 @@
 		<Unit filename="/Users/ccarl/Desktop/Ft_containers/queue.hpp">
 			<Option target="Containers"/>
 		</Unit>
+		<Unit filename="/Users/ccarl/Desktop/Ft_containers/queue_test.cpp">
+			<Option target="Containers"/>
+		</Unit>
 		<Unit filename="/Users/ccarl/Desktop/Ft_containers/stack.hpp">
 			<Option target="Containers"/>
 		</Unit>
+		<Unit filename="/Users/ccarl/Desktop/Ft_containers/stack_test.cpp">
+			<Option target="Containers"/>
+		</Unit>
 		<Unit filename="/Users/ccarl/Desktop/Ft_containers/vector.hpp">
+			<Option target="Containers"/>
+		</Unit>
+		<Unit filename="/Users/ccarl/Desktop/Ft_containers/vector_test.cpp">
 			<Option target="Containers"/>
 		</Unit>
 		<Unit filename="/Users/ccarl/Desktop/Ft_containers/CMakeLists.txt">

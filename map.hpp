@@ -198,7 +198,6 @@ namespace ft {
         std::pair<iterator,bool> insert (const value_type& val)
         {
             iterator it = iterator (tree);
-            s_tree<Key, T> *r = tree->add(val.first, val.second);
             it.setPtr(tree->add(val.first, val.second));
 			std::pair<iterator, bool> ret(it, tree->isAdd());
             _size = tree->getSize();

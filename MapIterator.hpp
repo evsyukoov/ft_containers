@@ -185,7 +185,9 @@ namespace ft {
 
         ConstReverseMapIterator(const ConstReverseMapIterator<Key, T, Compare, Alloc> &copy) : ReverseMapIterator<Key, T, Compare, Alloc>(copy) {}
 
-        ConstReverseMapIterator(ReverseMapIterator<Key, T, Compare, Alloc> iterator) {}
+        ConstReverseMapIterator(ReverseMapIterator<Key, T, Compare, Alloc> iterator) {
+        	this->ptr = iterator.getPtr();
+        }
 
         const T &operator*() {
             return *(this->ptr->pair);
@@ -202,7 +204,9 @@ namespace ft {
 
         ConstMapIterator(const ConstMapIterator<Key, T, Compare, Alloc> &copy) : MapIterator<Key, T, Compare, Alloc>(copy) {}
 
-        ConstMapIterator(MapIterator<Key, T, Compare, Alloc> iterator) {}
+        ConstMapIterator(MapIterator<Key, T, Compare, Alloc> iterator) {
+        	this->ptr = iterator.getPtr();
+        }
 
         const T &operator*() {
             return *(this->ptr->pair);
