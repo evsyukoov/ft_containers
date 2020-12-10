@@ -3,4 +3,4 @@ project(Containers)
 
 set(CMAKE_CXX_STANDARD 98)
 
-add_executable(Src/list_test.cpp Src/vector_test.cpp Src/map_test.cpp Src/stack_test.cpp Src/queue_test.cpp Src/main.cpp)
+add_executable(Containers Src/list_test.cpp Src/vector_test.cpp Src/map_test.cpp Src/stack_test.cpp Src/queue_test.cpp Src/main.cpp)

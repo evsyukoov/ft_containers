@@ -46,6 +46,7 @@ namespace ft
         {
             return (ptr);
         }
+
 		VectorIterator operator++(int)
 		{
             VectorIterator iter(*this);
@@ -163,6 +164,11 @@ namespace ft
         }
 
         //переопределение операторов
+
+		T   *operator->()
+		{
+			return (ptr);
+		}
 
         ReverseVectorIterator operator++(int)
         {
@@ -312,7 +318,12 @@ namespace ft
         ConstReverseVectorIterator() : ReverseVectorIterator<T>()
         {}
 
-        virtual ~ConstReverseVectorIterator()
+		ConstReverseVectorIterator(ReverseVectorIterator<int> iterator)
+		{
+			this->ptr = iterator.operator->();
+		}
+
+		virtual ~ConstReverseVectorIterator()
         {}
 
         ConstReverseVectorIterator(const ConstReverseVectorIterator &other)

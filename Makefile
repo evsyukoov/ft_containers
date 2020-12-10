@@ -8,7 +8,16 @@ SRC = Src/list_test.cpp \
 	  Src/map_test.cpp \
 	  Src/queue_test.cpp \
 	  Src/stack_test.cpp \
-	  Src/vector_test.cpp
+	  Src/vector_test.cpp \
+	  Includes/list.hpp \
+	  Includes/ListIterator.hpp \
+	  Includes/map.hpp \
+	  Includes/MapIterator.hpp \
+	  Includes/queue.hpp \
+	  Includes/stack.hpp \
+	  Includes/Tree.hpp \
+	  Includes/vector.hpp \
+	  Includes/VectorIterator.hpp
 
 OBJS = $(SRC:.cpp=.o)
 

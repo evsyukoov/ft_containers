@@ -13,8 +13,9 @@
 namespace vector_test
 {
 
-	void reverse_iterators_test();
-
+	void reverse_iterators_test1();
+	void reverse_iterators_test2();
+	
 	void push_pop_tests();
 
 	template<typename T>
@@ -49,10 +50,36 @@ namespace vector_test
 	}
 
 	template<typename T>
+	void printListConst(T &container)
+	{
+		typename T::const_iterator it1 = container.begin();
+		typename T::const_iterator it2 = container.end();
+		while (it1 != it2)
+		{
+			std::cout << *it1 << " ";
+			it1++;
+		}
+		std::cout << std::endl;
+	}
+
+	template<typename T>
 	void printListReverse(T &container)
 	{
 		typename T::reverse_iterator it1 = container.rbegin();
 		typename T::reverse_iterator it2 = container.rend();
+		while (it1 != it2)
+		{
+			std::cout << *it1 << " ";
+			it1++;
+		}
+		std::cout << std::endl;
+	}
+
+	template<typename T>
+	void printListReverseConst(T &container)
+	{
+		typename T::const_reverse_iterator it1 = container.rbegin();
+		typename T::const_reverse_iterator it2 = container.rend();
 		while (it1 != it2)
 		{
 			std::cout << *it1 << " ";
@@ -117,7 +144,7 @@ namespace vector_test
 		std::cout << msg << " iterator it1 = " << *it1 << ". Iterator it2 = " << *it2 << std::endl;
 	}
 
-	void iterators_test()
+	void iterators_test1()
 	{
 		std::cout << BLUE <<  "           ITERATORS TEST " << RESET << std::endl;
 		std::vector<int> lib1((size_t) 1, 2);
@@ -219,10 +246,203 @@ namespace vector_test
 		std::cout << RED << "--it  my: " << *(--itm3) << std::endl;
 		std::cout << GREEN << "it-- lib: " << *(it3--) << std::endl;
 		std::cout << RED << "it--  my: " << *(itm3--) << std::endl;
-		reverse_iterators_test();
+		reverse_iterators_test1();
+	}
+	
+	void iterators_test2()
+	{
+		std::cout << BLUE <<  "           CONST ITERATORS TEST " << RESET << std::endl;
+		std::vector<int> lib1((size_t) 1, 2);
+		ft::vector<int> my1((size_t) 1, 2);
+		lib1.push_back(3);
+		lib1.push_back(4);
+		lib1.push_back(5);
+		my1.push_back(3);
+		my1.push_back(4);
+		my1.push_back(5);
+		std::cout << GREEN;
+		std::cout << "iterators begin ---> end lib: ";
+		printListConst(lib1);
+		std::cout << RED;
+		std::cout << "iterators begin ---> end  my: ";
+		printListConst(my1);
+
+		std::cout << GREEN;
+		std::cout << "iterators end ---> begin lib: ";
+		printListReverseConst(lib1);
+		std::cout << RED;
+		std::cout << "iterators end ---> begin  my: ";
+		printListReverseConst(my1);
+		std::cout << BLUE << "           CONST ITERATORS OPERATORS TEST " << RESET << std::endl;
+		typedef std::vector<int>::const_iterator iterator_lib;
+		typedef ft::vector<int>::const_iterator iterator_my;
+		iterator_lib it1 = lib1.begin();
+		iterator_lib it2 = lib1.begin();
+		std::cout << GREEN;
+		print_iterators_info("lib: ", it1, it2);
+		it1 = it2 + 2;
+		std::cout << "lib: " << " iterator it1 = it2 + 2" << std::endl;
+		print_iterators_info("lib: ", it1, it2);
+		std::cout << RESET;
+
+		iterator_my itm1 = my1.begin();
+		iterator_my itm2 = my1.begin();
+		std::cout << std::endl;
+		std::cout << GREEN;
+		print_iterators_info(" my: ", itm1, itm2);
+		itm1 = itm2 + 2;
+		std::cout << " my: " << " iterator it1 = it2 + 2" << std::endl;
+		print_iterators_info(" my: ", itm1, itm2);
+
+		std::cout << RESET << std::endl;
+		iterator_lib it3 = lib1.begin();
+		iterator_lib it4 = lib1.begin();
+		std::cout << GREEN;
+		print_iterators_info("lib: ", it3, it4);
+		it3 = it4 += 2;
+		std::cout << "lib: " << " iterator it1 = it2 += 2" << std::endl;
+		print_iterators_info("lib: ", it3, it4);
+
+		iterator_my itm3 = my1.begin();
+		iterator_my itm4 = my1.begin();
+		std::cout <<RESET << std::endl;
+		std::cout << RED;
+		print_iterators_info(" my: ", itm3, itm4);
+		itm3 = itm4 += 2;
+		std::cout << " my: " << " iterator it1 = it2 += 2" << std::endl;
+		print_iterators_info(" my: ", itm3, itm4);
+
+		std::cout << RESET << std::endl;
+		std::cout << GREEN;
+		print_iterators_info("lib: ", it3, it4);
+		it3 = it4 -= 2;
+		std::cout << "lib: " << " iterator it1 = it2 -= 2" << std::endl;
+		print_iterators_info("lib: ", it3, it4);
+
+		std::cout << RESET << std::endl;
+		std::cout << RED;
+		print_iterators_info(" my: ", itm3, itm4);
+		itm3 = itm4 -= 2;
+		std::cout << " my: " << " iterator it1 = it2 -= 2" << std::endl;
+		print_iterators_info(" my: ", itm3, itm4);
+
+		std::cout << RESET << std::endl;
+		std::cout << GREEN;
+		print_iterators_info("lib: ", it3, it4);
+		it4 += 3;
+		it3 = it4 - 2;
+		std::cout << "lib: " << " iterator it1 = it2 - 2" << std::endl;
+		print_iterators_info("lib: ", it3, it4);
+
+		std::cout << RESET << std::endl;
+		std::cout << RED;
+		print_iterators_info(" my: ", itm3, itm4);
+		itm4 += 3;
+		itm3 = itm4 - 2;
+		std::cout << " my: " << " iterator it1 = it2 - 2" << std::endl;
+		print_iterators_info(" my: ", itm3, itm4);
+		std::cout << RESET;
+
+		std::cout << GREEN << "it++ lib: " << *(it3++) << std::endl;
+		std::cout << RED << "it++  my: " << *(itm3++) << std::endl;
+		std::cout << GREEN << "++it lib: " << *(++it3) << std::endl;
+		std::cout << RED << "++it  my: " << *(++itm3) << std::endl;
+		std::cout << GREEN << "--it lib: " << *(--it3) << std::endl;
+		std::cout << RED << "--it  my: " << *(--itm3) << std::endl;
+		std::cout << GREEN << "it-- lib: " << *(it3--) << std::endl;
+		std::cout << RED << "it--  my: " << *(itm3--) << std::endl;
+		reverse_iterators_test2();
 	}
 
-	void reverse_iterators_test()
+	void reverse_iterators_test2()
+	{
+		std::vector<int> lib1((size_t) 1, 2);
+		ft::vector<int> my1((size_t) 1, 2);
+		lib1.push_back(3);
+		lib1.push_back(4);
+		lib1.push_back(5);
+		my1.push_back(3);
+		my1.push_back(4);
+		my1.push_back(5);
+		std::cout << BLUE << "           CONST REVERSE ITERATORS OPERATORS TEST " << RESET << std::endl;
+		typedef std::vector<int>::const_reverse_iterator iterator_lib;
+		typedef ft::vector<int>::const_reverse_iterator iterator_my;
+		iterator_lib it1 = lib1.rbegin();
+		iterator_lib it2 = lib1.rbegin();
+		std::cout << GREEN;
+		print_iterators_info("lib: ", it1, it2);
+		it1 = it2 + 2;
+		std::cout << "lib: " << " iterator it1 = it2 + 2" << std::endl;
+		print_iterators_info("lib: ", it1, it2);
+
+		iterator_my itm1 = my1.rbegin();
+		iterator_my itm2 = my1.rbegin();
+		std::cout << std::endl;
+		std::cout << RED;
+		print_iterators_info(" my: ", itm1, itm2);
+		itm1 = itm2 + 2;
+		std::cout << " my: " << " iterator it1 = it2 + 2" << std::endl;
+		print_iterators_info(" my: ", itm1, itm2);
+
+		std::cout << std::endl;
+		iterator_lib it3 = lib1.rbegin();
+		iterator_lib it4 = lib1.rbegin();
+		std::cout << GREEN;
+		print_iterators_info("lib: ", it3, it4);
+		it3 = it4 += 2;
+		std::cout << "lib: " << " iterator it1 = it2 += 2" << std::endl;
+		print_iterators_info("lib: ", it3, it4);
+
+		iterator_my itm3 = my1.rbegin();
+		iterator_my itm4 = my1.rbegin();
+		std::cout << std::endl;
+		std::cout << RED;
+		print_iterators_info(" my: ", itm3, itm4);
+		itm3 = itm4 += 2;
+		std::cout << " my: " << " iterator it1 = it2 += 2" << std::endl;
+		print_iterators_info(" my: ", itm3, itm4);
+
+		std::cout << std::endl;
+		std::cout << GREEN;
+		print_iterators_info("lib: ", it3, it4);
+		it3 = it4 -= 2;
+		std::cout << "lib: " << " iterator it1 = it2 -= 2" << std::endl;
+		print_iterators_info("lib: ", it3, it4);
+
+		std::cout << std::endl;
+		std::cout << RED;
+		print_iterators_info(" my: ", itm3, itm4);
+		itm3 = itm4 -= 2;
+		std::cout << " my: " << " iterator it1 = it2 -= 2" << std::endl;
+		print_iterators_info(" my: ", itm3, itm4);
+
+		std::cout << std::endl;
+		std::cout << GREEN;
+		print_iterators_info("lib: ", it3, it4);
+		it4 += 3;
+		it3 = it4 - 2;
+		std::cout << "lib: " << " iterator it1 = it2 - 2" << std::endl;
+		print_iterators_info("lib: ", it3, it4);
+
+		std::cout << std::endl;
+		std::cout << RED;
+		print_iterators_info(" my: ", itm3, itm4);
+		itm4 += 3;
+		itm3 = itm4 - 2;
+		std::cout << " my: " << " iterator it1 = it2 - 2" << std::endl;
+		print_iterators_info(" my: ", itm3, itm4);
+
+		std::cout << GREEN << "it++ lib: " << *(it3++) << std::endl;
+		std::cout << RED << "it++  my: " << *(itm3++) << std::endl;
+		std::cout << GREEN << "++it lib: " << *(++it3) << std::endl;
+		std::cout << RED << "++it  my: " << *(++itm3) << std::endl;
+		std::cout << GREEN << "--it lib: " << *(--it3) << std::endl;
+		std::cout << RED << "--it  my: " << *(--itm3) << std::endl;
+		std::cout << GREEN << "it-- lib: " << *(it3--) << std::endl;
+		std::cout << RED << "it--  my: " << *(itm3--) << std::endl;
+	}
+
+	void reverse_iterators_test1()
 	{
 		std::vector<int> lib1((size_t) 1, 2);
 		ft::vector<int> my1((size_t) 1, 2);
@@ -855,7 +1075,8 @@ namespace vector_test
 	int vector_main()
 	{
 		vector_test::constructors_test();
-		vector_test::iterators_test();
+		vector_test::iterators_test1();
+		vector_test::iterators_test2();
 		vector_test::capacity_tests();
 		vector_test::element_access_test();
 		vector_test::modifiers_test();
