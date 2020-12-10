@@ -2,7 +2,7 @@
 // Created by Casie Carl on 12/9/20.
 //
 
-#include "Test.h"
+#include "../Includes/Test.h"
 int 	main()
 {
 	std::string test;

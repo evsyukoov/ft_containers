@@ -32,6 +32,7 @@ namespace ft {
         LinkedList<value_type>                      *border;
         size_type                                    len;
         allocator_type                               allocator;
+        std::allocator<LinkedList<T> > 				node_allocator;
 
     public:
 
@@ -197,7 +198,8 @@ namespace ft {
 
         size_type max_size() const
         {
-			return std::numeric_limits<difference_type>::max();
+        	return node_allocator.max_size();
+			//return std::numeric_limits<difference_type>::max();
         }
 
         //Element access

@@ -53,10 +53,11 @@ namespace ft {
         };
 
     private:
-        Compare comp;
-        allocator_type allocator;
-        size_type       _size;
-        Tree<Key, T, Compare> *tree;
+        Compare 									comp;
+        allocator_type 								allocator;
+        size_type       							_size;
+        Tree<Key, T, Compare> 						*tree;
+        std::allocator<Tree<Key, T, Compare> >		node_allocator;
 
     public:
 
@@ -181,7 +182,8 @@ namespace ft {
 
         size_type max_size() const
         {
-            return std::numeric_limits<difference_type>::max();
+			return node_allocator.max_size();
+            //return std::numeric_limits<difference_type>::max();
         }
 
         //Element acess

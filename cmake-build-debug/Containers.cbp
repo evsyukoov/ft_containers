@@ -80,49 +80,22 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/ccarl/Desktop/Ft_containers/ListIterator.hpp">
+		<Unit filename="/Users/ccarl/Desktop/Ft_containers/Src/list_test.cpp">
 			<Option target="Containers"/>
 		</Unit>
-		<Unit filename="/Users/ccarl/Desktop/Ft_containers/MapIterator.hpp">
+		<Unit filename="/Users/ccarl/Desktop/Ft_containers/Src/main.cpp">
 			<Option target="Containers"/>
 		</Unit>
-		<Unit filename="/Users/ccarl/Desktop/Ft_containers/Tree.hpp">
+		<Unit filename="/Users/ccarl/Desktop/Ft_containers/Src/map_test.cpp">
 			<Option target="Containers"/>
 		</Unit>
-		<Unit filename="/Users/ccarl/Desktop/Ft_containers/VectorIterator.hpp">
+		<Unit filename="/Users/ccarl/Desktop/Ft_containers/Src/queue_test.cpp">
 			<Option target="Containers"/>
 		</Unit>
-		<Unit filename="/Users/ccarl/Desktop/Ft_containers/list.hpp">
+		<Unit filename="/Users/ccarl/Desktop/Ft_containers/Src/stack_test.cpp">
 			<Option target="Containers"/>
 		</Unit>
-		<Unit filename="/Users/ccarl/Desktop/Ft_containers/list_test.cpp">
-			<Option target="Containers"/>
-		</Unit>
-		<Unit filename="/Users/ccarl/Desktop/Ft_containers/main.cpp">
-			<Option target="Containers"/>
-		</Unit>
-		<Unit filename="/Users/ccarl/Desktop/Ft_containers/map.hpp">
-			<Option target="Containers"/>
-		</Unit>
-		<Unit filename="/Users/ccarl/Desktop/Ft_containers/map_test.cpp">
-			<Option target="Containers"/>
-		</Unit>
-		<Unit filename="/Users/ccarl/Desktop/Ft_containers/queue.hpp">
-			<Option target="Containers"/>
-		</Unit>
-		<Unit filename="/Users/ccarl/Desktop/Ft_containers/queue_test.cpp">
-			<Option target="Containers"/>
-		</Unit>
-		<Unit filename="/Users/ccarl/Desktop/Ft_containers/stack.hpp">
-			<Option target="Containers"/>
-		</Unit>
-		<Unit filename="/Users/ccarl/Desktop/Ft_containers/stack_test.cpp">
-			<Option target="Containers"/>
-		</Unit>
-		<Unit filename="/Users/ccarl/Desktop/Ft_containers/vector.hpp">
-			<Option target="Containers"/>
-		</Unit>
-		<Unit filename="/Users/ccarl/Desktop/Ft_containers/vector_test.cpp">
+		<Unit filename="/Users/ccarl/Desktop/Ft_containers/Src/vector_test.cpp">
 			<Option target="Containers"/>
 		</Unit>
 		<Unit filename="/Users/ccarl/Desktop/Ft_containers/CMakeLists.txt">

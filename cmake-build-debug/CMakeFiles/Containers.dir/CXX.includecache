@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/Users/ccarl/Desktop/Ft_containers/MapIterator.hpp
+/Users/ccarl/Desktop/Ft_containers/Includes/MapIterator.hpp
 Tree.hpp
-/Users/ccarl/Desktop/Ft_containers/Tree.hpp
+/Users/ccarl/Desktop/Ft_containers/Includes/Tree.hpp
 
-/Users/ccarl/Desktop/Ft_containers/Tree.hpp
+/Users/ccarl/Desktop/Ft_containers/Includes/Tree.hpp
 utility
 -
 functional
@@ -18,7 +18,7 @@ functional
 iostream
 -
 
-/Users/ccarl/Desktop/Ft_containers/map.hpp
+/Users/ccarl/Desktop/Ft_containers/Includes/map.hpp
 utility
 -
 memory
@@ -30,13 +30,13 @@ cstddef
 iostream
 -
 MapIterator.hpp
-/Users/ccarl/Desktop/Ft_containers/MapIterator.hpp
+/Users/ccarl/Desktop/Ft_containers/Includes/MapIterator.hpp
 
-/Users/ccarl/Desktop/Ft_containers/map_test.cpp
+/Users/ccarl/Desktop/Ft_containers/Src/map_test.cpp
 map
 -
 iostream
 -
-map.hpp
-/Users/ccarl/Desktop/Ft_containers/map.hpp
+../Includes/map.hpp
+/Users/ccarl/Desktop/Ft_containers/Includes/map.hpp
 
