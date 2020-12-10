@@ -41,7 +41,7 @@ namespace ft {
             this->allocator = alloc;
             border = this->new_node(head, tail);
             border->elem = allocator.allocate(1);
-			allocator.construct(border->elem, 0);
+			allocator.construct(border->elem, value_type());
             this->head = border;
             this->tail = border;
             border->prev = tail;
@@ -55,7 +55,7 @@ namespace ft {
             this->allocator = alloc;
             border = this->new_node(head, tail);
             border->elem = allocator.allocate(1);
-			allocator.construct(border->elem, 0);
+			allocator.construct(border->elem, value_type());
             this->head = border;
             this->tail = border;
             border->prev = tail;
@@ -76,7 +76,7 @@ namespace ft {
             this->allocator = alloc;
             border = this->new_node(head, tail);
             border->elem = allocator.allocate(1);
-			allocator.construct(border->elem, 0);
+			allocator.construct(border->elem, value_type());
             this->head = border;
             this->tail = border;
             border->prev = tail;
@@ -94,7 +94,7 @@ namespace ft {
             this->allocator = x.allocator;
             border = this->new_node(head, tail);
             border->elem = allocator.allocate(1);
-			allocator.construct(border->elem, 0);
+			allocator.construct(border->elem, value_type());
             this->head = border;
             this->tail = border;
             border->prev = tail;
@@ -124,7 +124,7 @@ namespace ft {
             this->allocator = x.allocator;
             border = this->new_node(head, tail);
             border->elem = allocator.allocate(1);
-			allocator.construct(border->elem, 0);
+			allocator.construct(border->elem, value_type());
             this->head = border;
             this->tail = border;
             border->prev = tail;
@@ -197,7 +197,7 @@ namespace ft {
 
         size_type max_size() const
         {
-            return allocator.max_size(); //std::numeric_limits<size_type>::max() / sizeof(value_type)
+			return std::numeric_limits<difference_type>::max();
         }
 
         //Element access
@@ -499,17 +499,13 @@ namespace ft {
            while (first != last)
            {
                iterator tmp = ++first;
-               --first;
-               splice(position, x, first);
+               splice(position, x, --first);
                first = tmp;
            }
         }
 
         void splice(iterator position, list& x)
         {
-//            iterator it = begin();
-//            while (it != position)
-//                it++;
             LinkedList<T> *currThis = position.getPtr();
             LinkedList<T> *prevThis = currThis->prev;
             currThis->prev = x.tail;

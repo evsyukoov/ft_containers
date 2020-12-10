@@ -95,6 +95,11 @@ namespace  ft {
         friend bool operator>=(const queue<T, Container> &lhs, const queue<T, Container> &rhs) {
             return lhs.container >= rhs.container;
         }
+
+		friend void swap (queue<T,Container>& x, queue<T,Container>& y)
+		{
+			x.container.swap(y.container);
+		}
     };
 }
 #endif //CONTAINERS_QUEUE_HPP

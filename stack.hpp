@@ -86,6 +86,11 @@ namespace  ft {
         friend bool operator>=(const stack<T, Container> &lhs, const stack<T, Container> &rhs) {
             return lhs.container >= rhs.container;
         }
+
+		friend void swap (stack<T,Container>& x, stack<T,Container>& y)
+		{
+        	x.container.swap(y.container);
+		}
     };
 }
 #endif //CONTAINERS_STACK_HPP

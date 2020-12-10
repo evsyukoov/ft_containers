@@ -15,8 +15,8 @@ CMakeFiles/Containers.dir/map_test.cpp.o: ../map_test.cpp
 
 CMakeFiles/Containers.dir/queue_test.cpp.o: ../ListIterator.hpp
 CMakeFiles/Containers.dir/queue_test.cpp.o: ../list.hpp
+CMakeFiles/Containers.dir/queue_test.cpp.o: ../queue.hpp
 CMakeFiles/Containers.dir/queue_test.cpp.o: ../queue_test.cpp
-CMakeFiles/Containers.dir/queue_test.cpp.o: ../stack.hpp
 
 CMakeFiles/Containers.dir/stack_test.cpp.o: ../ListIterator.hpp
 CMakeFiles/Containers.dir/stack_test.cpp.o: ../list.hpp

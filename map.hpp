@@ -56,10 +56,8 @@ namespace ft {
         Compare comp;
         allocator_type allocator;
         size_type       _size;
-
-    public:
         Tree<Key, T, Compare> *tree;
-        int tabs; // переменная для отладочной печати
+
     public:
 
         //Constructors, destructors
@@ -183,7 +181,7 @@ namespace ft {
 
         size_type max_size() const
         {
-            return allocator.max_size();
+            return std::numeric_limits<difference_type>::max();
         }
 
         //Element acess

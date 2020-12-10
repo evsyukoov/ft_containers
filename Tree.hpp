@@ -139,6 +139,7 @@ public:
             root = new_node(key, val);
             root->parent = NULL;
             size++;
+            isAddPair = true;
             setBorders();
             return (root);
         }

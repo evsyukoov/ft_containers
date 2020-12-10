@@ -5,6 +5,10 @@
 #include <map>
 #include <iostream>
 #include "map.hpp"
+#define RED "\033[1;31m"
+#define GREEN "\033[1;32m"
+#define BLUE "\033[1;34m"
+#define RESET "\033[0m"
 
 namespace map_test
 {
@@ -23,7 +27,7 @@ namespace map_test
 			i++;
 		}
 		std::cout << ",size: " << container.size();
-		std::cout << std::endl;
+		std::cout << RESET << std::endl;
 	}
 
 	template<typename T>
@@ -42,12 +46,12 @@ namespace map_test
 
 	void constructors_test()
 	{
-		std::cout << "--------------CONSTRUCTORS TEST--------------------" << std::endl;
+		std::cout << BLUE << "--------------CONSTRUCTORS TEST--------------------" << RESET << std::endl;
 		std::map<int, int> lib1;
 		ft::map<int, int> my1;
-		std::cout << "lib default constructor content: ";
+		std::cout << GREEN << "lib default constructor content: ";
 		printMap(lib1);
-		std::cout << " my default constructor content: ";
+		std::cout << RED << " my default constructor content: ";
 		printMap(my1);
 
 		lib1[9] = 3;
@@ -67,47 +71,47 @@ namespace map_test
 		std::cout << std::endl;
 		std::map<int, int> lib2(lib1.begin(), lib1.end());
 		ft::map<int, int> my2(my1.begin(), my1.end());
-		std::cout << "lib constructor range content: ";
+		std::cout << GREEN <<  "lib constructor range content: ";
 		printMap(lib2);
-		std::cout << " my constructor range content: ";
+		std::cout << RED << " my constructor range content: ";
 		printMap(my2);
 
 		std::map<int, int> lib3(++lib1.begin(), --lib1.end());
 		ft::map<int, int> my3(++my1.begin(), --my1.end());
-		std::cout << "lib constructor range content: ";
+		std::cout << GREEN <<  "lib constructor range content: ";
 		printMap(lib3);
-		std::cout << " my constructor range content: ";
+		std::cout << RED << " my constructor range content: ";
 		printMap(my3);
 
 		std::cout << std::endl;
 		std::map<int, int> lib4(lib3);
 		ft::map<int, int> my4(my3);
-		std::cout << "lib constructor copy content: ";
+		std::cout << GREEN <<  "lib constructor copy content: ";
 		printMap(lib4);
-		std::cout << " my constructor copy content: ";
+		std::cout << RED << " my constructor copy content: ";
 		printMap(my4);
 
 		std::cout << std::endl;
 		lib4 = lib1;
 		my4 = my1;
-		std::cout << "lib assignation content: ";
+		std::cout << GREEN <<  "lib assignation content: ";
 		printMap(lib4);
-		std::cout << " my assignation content: ";
+		std::cout << RED <<" my assignation content: ";
 		printMap(my4);
 
 		std::map<int, int> lib5;
 		ft::map<int, int> my5;
 		lib4 = lib5;
 		my4 = my5;
-		std::cout << "lib assignation content: ";
+		std::cout << GREEN <<  "lib assignation content: ";
 		printMap(lib4);
-		std::cout << " my assignation content: ";
+		std::cout << RED << " my assignation content: ";
 		printMap(my4);
 	}
 
 	void iterators_test()
 	{
-		std::cout << "--------------ITERATORS TEST--------------------" << std::endl;
+		std::cout << BLUE << "--------------ITERATORS TEST--------------------" << RESET << std::endl;
 		std::map<int, int> lib1;
 		ft::map<int, int> my1;
 		lib1[100] = 3;
@@ -137,7 +141,7 @@ namespace map_test
 		lib1[150] = 10;
 		lib1[190] = 11;
 		lib1[210] = 8;
-		std::cout << "begin --> end lib (standart comparator):" << std::endl;
+		std::cout << GREEN << "begin --> end lib (standart comparator):" << std::endl;
 		printMap(lib1);
 
 		my1[100] = 3;
@@ -167,7 +171,7 @@ namespace map_test
 		my1[150] = 10;
 		my1[190] = 11;
 		my1[210] = 8;
-		std::cout << "begin --> end my (standart comparator):" << std::endl;
+		std::cout << RED << "begin --> end my (standart comparator):" << std::endl;
 		printMap(my1);
 
 		std::cout << std::endl;
@@ -229,23 +233,23 @@ namespace map_test
 		my2[150] = 10;
 		my2[190] = 11;
 		my2[210] = 8;
-		std::cout << "begin --> end lib (comparator std::greater):" << std::endl;
+		std::cout << GREEN <<"begin --> end lib (comparator std::greater):" << std::endl;
 		printMap(lib2);
-		std::cout << "begin --> end my (comparator std::greater):" << std::endl;
+		std::cout << RED <<"begin --> end my (comparator std::greater):" << std::endl;
 		printMap(my2);
 
 		std::cout << std::endl;
 
-		std::cout << "rbegin --> rend lib standart comparator:" << std::endl;
+		std::cout << GREEN << "rbegin --> rend lib standart comparator:" << std::endl;
 		printReverseMap(lib1);
-		std::cout << "rbegin --> rend  my standart comparator:" << std::endl;
+		std::cout << RED << "rbegin --> rend  my standart comparator:" << std::endl;
 		printReverseMap(my1);
 
 		std::cout << std::endl;
 
-		std::cout << "rbegin --> rend lib (comparator std::greater):" << std::endl;
+		std::cout << GREEN << "rbegin --> rend lib (comparator std::greater):" << std::endl;
 		printReverseMap(lib2);
-		std::cout << "rbegin --> rend  my (comparator std::greater):" << std::endl;
+		std::cout << RED << "rbegin --> rend  my (comparator std::greater):" << std::endl;
 		printReverseMap(my2);
 
 		std::cout << std::endl;
@@ -253,16 +257,16 @@ namespace map_test
 
 	void capacity_test()
 	{
-		std::cout << "--------------CAPACITY TEST--------------------" << std::endl;
+		std::cout << BLUE << "--------------CAPACITY TEST--------------------" << RESET << std::endl;
 		std::map<int, int> lib1;
 		ft::map<int, int> my1;
 
-		std::cout << "lib content: ";
+		std::cout << GREEN << "lib content: ";
 		printMap(lib1);
 		std::cout << "Lib container is " << (lib1.empty() ? "empty" : "not empty") << std::endl;
 		std::cout << " my content: ";
 		printMap(my1);
-		std::cout << " My container is " << (my1.empty() ? "empty" : "not empty") << std::endl;
+		std::cout << RED << " My container is " << (my1.empty() ? "empty" : "not empty") << std::endl;
 		lib1[100] = 1;
 		lib1[10] = 2;
 		lib1[100] = 3;
@@ -270,58 +274,58 @@ namespace map_test
 		my1[10] = 2;
 		my1[100] = 3;
 		std::cout << std::endl;
-		std::cout << "lib content: ";
+		std::cout << GREEN << "lib content: ";
 		printMap(lib1);
 		std::cout << "Lib container is " << (lib1.empty() ? "empty" : "not empty") << std::endl;
 		std::cout << " my content: ";
 		printMap(my1);
-		std::cout << " My container is " << (my1.empty() ? "empty" : "not empty") << std::endl;
+		std::cout << RED << " My container is " << (my1.empty() ? "empty" : "not empty") << std::endl;
 
 		std::cout << std::endl;
-		std::cout << "Lib max size: " << lib1.max_size() << std::endl;
-		std::cout << " My max size: " << my1.max_size() << std::endl;
+		std::cout << GREEN << "Lib max size: " << lib1.max_size() << std::endl;
+		std::cout << RED << " My max size: " << my1.max_size() << std::endl;
 	}
 
 	void access_tests()
 	{
-		std::cout << "--------------ACCESS TEST--------------------" << std::endl;
+		std::cout << BLUE << "--------------ACCESS TEST--------------------" << RESET << std::endl;
 		std::map<int, int> lib1;
 		ft::map<int, int> my1;
 		lib1[6] = 100;
 		my1[6] = 100;
 
-		std::cout << "lib[6] = 100, content: ";
+		std::cout << GREEN << "lib[6] = 100, content: ";
 		printMap(lib1);
-		std::cout << "lib[6] = 100, content: ";
+		std::cout << RED << "lib[6] = 100, content: ";
 		printMap(my1);
 		std::cout << std::endl;
 		lib1[10] = 10;
 		my1[10] = 10;
-		std::cout << "lib[10] = 10, content: ";
+		std::cout << GREEN << "lib[10] = 10, content: ";
 		printMap(lib1);
-		std::cout << "lib[10] = 10, content: ";
+		std::cout << RED << "lib[10] = 10, content: ";
 		printMap(my1);
 		std::cout << std::endl;
 		lib1[6] = 1;
 		my1[6] = 1;
-		std::cout << "lib[6] = 1, content: ";
+		std::cout << GREEN <<  "lib[6] = 1, content: ";
 		printMap(lib1);
-		std::cout << "lib[6] = 1, content: ";
+		std::cout << RED <<  "lib[6] = 1, content: ";
 		printMap(my1);
 		std::cout << std::endl;
 
 		lib1[6] = 1;
 		my1[6] = 1;
-		std::cout << "lib[6] = 1, content: ";
+		std::cout << GREEN <<  "lib[6] = 1, content: ";
 		printMap(lib1);
-		std::cout << "lib[6] = 1, content: ";
+		std::cout << RED << "lib[6] = 1, content: ";
 		printMap(my1);
 		std::cout << std::endl;
 	}
 
 	void insert_test()
 	{
-		std::cout << "--------------ACCESS TEST--------------------" << std::endl;
+		std::cout << BLUE << "--------------ACCESS TEST--------------------" << RESET << std::endl;
 		std::cout << "insert single element: " << std::endl;
 		std::map<int, int> lib1;
 		ft::map<int, int> my1;
@@ -329,11 +333,11 @@ namespace map_test
 		std::pair<ft::map<int, int>::iterator, bool> ret2;
 		ret1 = lib1.insert(std::pair<int, int>(28, 6));
 		ret2 = my1.insert(std::pair<int, int>(28, 6));
-		std::cout << "insert 28:6 in lib, ret value: ";
+		std::cout << GREEN << "insert 28:6 in lib, ret value: ";
 		std::cout << "Iter: " << ret1.first->first << ":" << ret1.first->second << ", bool: " << ret1.second
 				  << ",content: " << std::endl;
 		printMap(lib1);
-		std::cout << "insert 28:6 in my, ret value: ";
+		std::cout << RED << "insert 28:6 in my, ret value: ";
 		std::cout << "Iter: " << ret2.first->first << ":" << ret2.first->second << ", bool: " << ret2.second
 				  << ",content: " << std::endl;
 		printMap(my1);
@@ -341,11 +345,11 @@ namespace map_test
 
 		ret1 = lib1.insert(std::pair<int, int>(33, 4));
 		ret2 = my1.insert(std::pair<int, int>(33, 4));
-		std::cout << "insert 33:4 in lib, ret value: ";
+		std::cout << GREEN << "insert 33:4 in lib, ret value: ";
 		std::cout << "Iter: " << ret1.first->first << ":" << ret1.first->second << ", bool: " << ret1.second
 				  << ",content: " << std::endl;
 		printMap(lib1);
-		std::cout << "insert 33:4 in  my, ret value: ";
+		std::cout << RED << "insert 33:4 in  my, ret value: ";
 		std::cout << "Iter: " << ret2.first->first << ":" << ret2.first->second << ", bool: " << ret2.second
 				  << ",content: " << std::endl;
 		printMap(my1);
@@ -353,11 +357,11 @@ namespace map_test
 
 		ret1 = lib1.insert(std::pair<int, int>(26, 4));
 		ret2 = my1.insert(std::pair<int, int>(26, 4));
-		std::cout << "insert 26:4 in lib, ret value: ";
+		std::cout << GREEN << "insert 26:4 in lib, ret value: ";
 		std::cout << "Iter: " << ret1.first->first << ":" << ret1.first->second << ", bool: " << ret1.second
 				  << ",content: " << std::endl;
 		printMap(lib1);
-		std::cout << "insert 26:4 in  my, ret value: ";
+		std::cout << RED << "insert 26:4 in  my, ret value: ";
 		std::cout << "Iter: " << ret2.first->first << ":" << ret2.first->second << ", bool: " << ret2.second
 				  << ",content: " << std::endl;
 		printMap(my1);
@@ -365,11 +369,11 @@ namespace map_test
 
 		ret1 = lib1.insert(std::pair<int, int>(28, 100));
 		ret2 = my1.insert(std::pair<int, int>(28, 100));
-		std::cout << "insert 28:100 in lib, ret value: ";
+		std::cout << GREEN << "insert 28:100 in lib, ret value: ";
 		std::cout << "Iter: " << ret1.first->first << ":" << ret1.first->second << ", bool: " << ret1.second
 				  << ",content: " << std::endl;
 		printMap(lib1);
-		std::cout << "insert 28:100 in  my, ret value: ";
+		std::cout << RED << "insert 28:100 in  my, ret value: ";
 		std::cout << "Iter: " << ret2.first->first << ":" << ret2.first->second << ", bool: " << ret2.second
 				  << ",content: " << std::endl;
 		printMap(my1);
@@ -380,30 +384,30 @@ namespace map_test
 		ft::map<int, int>::iterator ret4;
 		ret3 = lib1.insert(lib1.begin(), std::pair<int, int>(38, 4));
 		ret4 = my1.insert(my1.begin(), std::pair<int, int>(38, 4));
-		std::cout << "insert 38:4 in lib, ret value: ";
+		std::cout << GREEN << "insert 38:4 in lib, ret value: ";
 		std::cout << "Iter: " << ret3->first << ":" << ret3->second << ",content: " << std::endl;
 		printMap(lib1);
-		std::cout << "insert 38:4 in  my, ret value: ";
+		std::cout << RED << "insert 38:4 in  my, ret value: ";
 		std::cout << "Iter: " << ret4->first << ":" << ret4->second << ",content: " << std::endl;
 		printMap(my1);
 		std::cout << std::endl;
 
 		ret3 = lib1.insert(lib1.begin(), std::pair<int, int>(-5, 8));
 		ret4 = my1.insert(my1.begin(), std::pair<int, int>(-5, 8));
-		std::cout << "insert -5:8 in lib, ret value: ";
-		std::cout << "Iter: " << ret3->first << ":" << ret3->second << ",content: " << std::endl;
+		std::cout << GREEN <<  "insert -5:8 in lib, ret value: ";
+		std::cout  << "Iter: " << ret3->first << ":" << ret3->second << ",content: " << std::endl;
 		printMap(lib1);
-		std::cout << "insert -5:8 in  my, ret value: ";
+		std::cout << RED << "insert -5:8 in  my, ret value: ";
 		std::cout << "Iter: " << ret4->first << ":" << ret4->second << ",content: " << std::endl;
 		printMap(my1);
 		std::cout << std::endl;
 
 		ret3 = lib1.insert(lib1.begin(), std::pair<int, int>(33, 100));
 		ret4 = my1.insert(my1.begin(), std::pair<int, int>(33, 100));
-		std::cout << "insert 33:100 in lib, ret value: ";
+		std::cout << GREEN <<  "insert 33:100 in lib, ret value: ";
 		std::cout << "Iter: " << ret3->first << ":" << ret3->second << ",content: " << std::endl;
 		printMap(lib1);
-		std::cout << "insert 33:100 in  my, ret value: ";
+		std::cout << RED << "insert 33:100 in  my, ret value: ";
 		std::cout << "Iter: " << ret4->first << ":" << ret4->second << ",content: " << std::endl;
 		printMap(my1);
 		std::cout << std::endl;
@@ -420,10 +424,10 @@ namespace map_test
 		my2[10] = 2;
 		my2[100] = 3;
 		my2[6] = 4;
-		std::cout << "insert range lib, content: ";
+		std::cout << GREEN << "insert range lib, content: ";
 		lib1.insert(lib2.begin(), lib2.end());
 		printMap(lib1);
-		std::cout << "insert range  my, content: ";
+		std::cout << RED << "insert range  my, content: ";
 		my1.insert(my2.begin(), my2.end());
 		printMap(my1);
 //
@@ -437,36 +441,13 @@ namespace map_test
 		my3[100] = 1000;
 		my3[10] = 1;
 
-		std::cout << "insert range lib, content: ";
+		std::cout << GREEN << "insert range lib, content: ";
 		lib1.insert(lib3.begin(), lib3.end());
 		printMap(lib1);
-		std::cout << "insert range  my, content: ";
+		std::cout << RED << "insert range  my, content: ";
 		my1.insert(my3.begin(), my3.end());
 		printMap(my1);
 
-	}
-
-	void bounds_test()
-	{
-		ft::map<char, int> mymap;
-		ft::map<char, int>::iterator itlow, itup;
-
-		mymap['a'] = 20;
-		//mymap['b']=40;
-		//mymap['c']=60;
-		mymap['d'] = 80;
-		mymap['e'] = 100;
-
-		printMap(mymap);
-		itlow = mymap.begin();
-		itlow = mymap.lower_bound('b');  // itlow points to b
-		itup = mymap.upper_bound('e');   // itup points to e (not d!)
-		std::cout << "low: " << itlow->first << ":" << itlow->second << std::endl;
-		std::cout << "low: " << itup->first << ":" << itup->second << std::endl;
-		mymap.erase(itlow, itup);        // erases [itlow,itup)
-
-//    for (std::map<char,int>::iterator it=mymap.begin(); it!=mymap.end(); ++it)
-//        std::cout << it->first << " => " << it->second << '\n';
 	}
 
 	void equal_range()
@@ -480,11 +461,11 @@ namespace map_test
 		std::pair<std::map<char, int>::iterator, std::map<char, int>::iterator> ret;
 		ret = mymap.equal_range('b');
 
-		std::cout << "lower bound points to: ";
+		std::cout << RED << "lower bound points to: ";
 		std::cout << ret.first->first << " => " << ret.first->second << '\n';
 
 		std::cout << "upper bound points to: ";
-		std::cout << ret.second->first << " => " << ret.second->second << '\n';
+		std::cout << ret.second->first << " => " << ret.second->second << RESET << '\n';
 	}
 
 	void count_test()
@@ -548,7 +529,7 @@ namespace map_test
 
 	void erase_test()
 	{
-		std::cout << "--------------ERASE TEST--------------------" << std::endl;
+		std::cout << BLUE << "--------------ERASE TEST--------------------" << RESET << std::endl;
 		std::map<int, int> lib1;
 		ft::map<int, int> my1;
 		lib1[100] = 3;
@@ -578,7 +559,7 @@ namespace map_test
 		lib1[150] = 10;
 		lib1[190] = 11;
 		lib1[210] = 8;
-		std::cout << "lib before erase:" << std::endl;
+		std::cout << GREEN << "lib before erase:" << std::endl;
 		printMap(lib1);
 
 		my1[100] = 3;
@@ -608,7 +589,7 @@ namespace map_test
 		my1[150] = 10;
 		my1[190] = 11;
 		my1[210] = 8;
-		std::cout << " my before erase:" << std::endl;
+		std::cout << RED <<  " my before erase:" << std::endl;
 		printMap(my1);
 		std::map<int, int>::iterator itl = lib1.begin();
 		itl++;
@@ -617,10 +598,10 @@ namespace map_test
 		itlm++;
 		itlm++;
 		std::cout << std::endl;
-		std::cout << "lib erase iterator: ";
+		std::cout << GREEN << "lib erase iterator: ";
 		lib1.erase(itl);
 		printMap(lib1);
-		std::cout << " my erase iterator: ";
+		std::cout << RED << " my erase iterator: ";
 		my1.erase(itlm);
 		printMap(my1);
 
@@ -635,67 +616,67 @@ namespace map_test
 		itlm++;
 		itlm++;
 		itlm++;
-		std::cout << "lib erase iterator: ";
+		std::cout << GREEN << "lib erase iterator: ";
 		lib1.erase(itl);
 		printMap(lib1);
-		std::cout << " my erase iterator: ";
+		std::cout << RED << " my erase iterator: ";
 		my1.erase(itlm);
 		printMap(my1);
 
 		std::cout << std::endl;
 		size_t ret1 = lib1.erase(63);
-		std::cout << "lib erase from value, ret: " << ret1 << ",content: ";
+		std::cout << GREEN << "lib erase from value, ret: " << ret1 << ",content: ";
 		printMap(lib1);
 		size_t ret2 = my1.erase(63);
-		std::cout << " my erase from value, ret: " << ret2 << ",content: ";
+		std::cout << RED << " my erase from value, ret: " << ret2 << ",content: ";
 		printMap(my1);
 
 		std::cout << std::endl;
 		ret1 = lib1.erase(90);
-		std::cout << "lib erase from value, ret: " << ret1 << ",content: ";
+		std::cout << GREEN << "lib erase from value, ret: " << ret1 << ",content: ";
 		printMap(lib1);
 		ret2 = my1.erase(90);
-		std::cout << " my erase from value, ret: " << ret2 << ",content: ";
+		std::cout << RED << " my erase from value, ret: " << ret2 << ",content: ";
 		printMap(my1);
 
 		std::cout << std::endl;
 		ret1 = lib1.erase(10000);
-		std::cout << "lib erase from value, ret: " << ret1 << ",content: ";
+		std::cout << GREEN << "lib erase from value, ret: " << ret1 << ",content: ";
 		printMap(lib1);
 		ret2 = my1.erase(10000);
-		std::cout << " my erase from value, ret: " << ret2 << ",content: ";
+		std::cout << RED << " my erase from value, ret: " << ret2 << ",content: ";
 		printMap(my1);
 
 		std::cout << std::endl;
 		ret1 = lib1.erase(29);
-		std::cout << "lib erase from value, ret: " << ret1 << ",content: ";
+		std::cout << GREEN << "lib erase from value, ret: " << ret1 << ",content: ";
 		printMap(lib1);
 		ret2 = my1.erase(29);
-		std::cout << " my erase from value, ret: " << ret2 << ",content: ";
+		std::cout << RED << " my erase from value, ret: " << ret2 << ",content: ";
 		printMap(my1);
 
 		std::cout << std::endl;
 		ret1 = lib1.erase(42);
-		std::cout << "lib erase from value, ret: " << ret1 << ",content: ";
+		std::cout << GREEN << "lib erase from value, ret: " << ret1 << ",content: ";
 		printMap(lib1);
 		ret2 = my1.erase(42);
-		std::cout << " my erase from value, ret: " << ret2 << ",content: ";
+		std::cout << RED << " my erase from value, ret: " << ret2 << ",content: ";
 		printMap(my1);
 
 		std::cout << std::endl;
 		ret1 = lib1.erase(56);
-		std::cout << "lib erase from value, ret: " << ret1 << ",content: ";
+		std::cout << GREEN << "lib erase from value, ret: " << ret1 << ",content: ";
 		printMap(lib1);
 		ret2 = my1.erase(56);
-		std::cout << " my erase from value, ret: " << ret2 << ",content: ";
+		std::cout << RED << " my erase from value, ret: " << ret2 << ",content: ";
 		printMap(my1);
 
 		std::cout << std::endl;
 		ret1 = lib1.erase(56);
-		std::cout << "lib erase from value, ret: " << ret1 << ",content: ";
+		std::cout << GREEN << "lib erase from value, ret: " << ret1 << ",content: ";
 		printMap(lib1);
 		ret2 = my1.erase(56);
-		std::cout << " my erase from value, ret: " << ret2 << ",content: ";
+		std::cout << RED << " my erase from value, ret: " << ret2 << ",content: ";
 		printMap(my1);
 
 		std::cout << std::endl;
@@ -718,10 +699,10 @@ namespace map_test
 		m2--;
 		m2--;
 		lib1.erase(l1, l2);
-		std::cout << "lib erase range content: ";
+		std::cout << GREEN <<  "lib erase range content: ";
 		printMap(lib1);
 		my1.erase(m1, m2);
-		std::cout << " my erase range content: ";
+		std::cout << RED << " my erase range content: ";
 		printMap(my1);
 		l1 = lib1.begin();
 		m1 = my1.begin();
@@ -738,12 +719,12 @@ namespace map_test
 
 		std::cout << std::endl;
 		lib1.erase(l1, l2);
-		std::cout << "lib erase range content: ";
+		std::cout << GREEN << "lib erase range content: ";
 		printMap(lib1);
 		my1.erase(m1, m2);
-		std::cout << " my erase range content: ";
+		std::cout << RED << " my erase range content: ";
 		printMap(my1);
-		std::cout << "--------------CLEAR TEST--------------------" << std::endl;
+		std::cout << BLUE << "--------------CLEAR TEST--------------------" << RESET << std::endl;
 		lib1.clear();
 		my1.clear();
 		std::cout << "lib clear: ";
@@ -754,7 +735,7 @@ namespace map_test
 
 	void swap_test()
 	{
-		std::cout << "----------------SWAP TEST--------------------" << std::endl;
+		std::cout << BLUE <<  "----------------SWAP TEST--------------------" << RESET << std::endl;
 		ft::map<char, int> my1;
 		ft::map<char, int> my2;
 		my1['a'] = 10;
@@ -764,17 +745,17 @@ namespace map_test
 		my2['f'] = 8;
 		my2['e'] = 7;
 		my2['x'] = 6;
-		std::cout << "BEFORE swap:" << std::endl;
+		std::cout << RED << "BEFORE swap:" << std::endl;
 		std::cout << "my1: ";
 		printMap(my1);
-		std::cout << "my2: ";
+		std::cout << RED << "my2: ";
 		printMap(my2);
 		std::cout << std::endl;
 		my1.swap(my2);
-		std::cout << "AFTER swap:" << std::endl;
+		std::cout << RED "AFTER swap:" << std::endl;
 		std::cout << "my1: ";
 		printMap(my1);
-		std::cout << "my2: ";
+		std::cout << RED << "my2: ";
 		printMap(my2);
 	}
 
@@ -825,39 +806,39 @@ namespace map_test
 		std::cout << std::endl;
 		std::cout << "first pair: " << (*i1).first << ":" << (*i1).second << ",second pair: " << (*i2).first << ":"
 				  << (*i2).second << std::endl;
-		std::cout << "first is " << (val_comparator(*i1, *i2) ? compare_msg1 : compare_msg2) << std::endl;
+		std::cout << "first is " << (val_comparator(*i1, *i2) ? compare_msg1 : compare_msg2) << RESET << std::endl;
 	}
 
 	void observers_test()
 	{
-		std::cout << "----------------OBSERVERS TEST--------------------" << std::endl;
+		std::cout << BLUE << "----------------OBSERVERS TEST--------------------" << RESET << std::endl;
 		ft::map<int, int> mymap;
 		std::map<int, int> mymapLib;
 		ft::map<int, int, std::greater<int> > mymap1;
 		std::map<int, int, std::greater<int> > mymapLib1;
-		std::cout << "My default comparator test" << std::endl;
+		std::cout << RED << "My default comparator test" << std::endl;
 		observKeyPrint(mymap, "less than second", "greater or equal than second");
 		std::cout << std::endl;
-		std::cout << "Lib default comparator test" << std::endl;
+		std::cout << GREEN << "Lib default comparator test" << std::endl;
 		observKeyPrint(mymapLib, "less than second", "greater or equal than second");
 
 		std::cout << std::endl;
-		std::cout << "My std::greater test" << std::endl;
+		std::cout << RED << "My std::greater test" << std::endl;
 		observKeyPrint(mymap1, "greater than second", "less or equal than second");
 		std::cout << std::endl;
-		std::cout << "Lib std::greater test" << std::endl;
+		std::cout << GREEN << "Lib std::greater test" << std::endl;
 		observKeyPrint(mymapLib1, "greater than second", "less or equal than second");
 
-		std::cout << "My default comparator test" << std::endl;
+		std::cout << RED << "My default comparator test" << std::endl;
 		observPairPrint(mymap, "less than second", "greater or equal than second");
 		std::cout << std::endl;
-		std::cout << "Lib default comparator test" << std::endl;
+		std::cout << GREEN << "Lib default comparator test" << std::endl;
 		observPairPrint(mymapLib, "less than second", "greater or equal than second");
 
-		std::cout << "My std::greater test" << std::endl;
+		std::cout << RED << "My std::greater test" << std::endl;
 		observPairPrint(mymap, "less than second", "greater or equal than second");
 		std::cout << std::endl;
-		std::cout << "Lib std::greater test" << std::endl;
+		std::cout << GREEN << "Lib std::greater test" << std::endl;
 		observPairPrint(mymapLib, "less than second", "greater or equal than second");
 		find_tests();
 		different_tests();
@@ -866,12 +847,12 @@ namespace map_test
 
 	void find_tests()
 	{
-		std::cout << "----------------OPERATIONS TEST--------------------" << std::endl;
+		std::cout << BLUE << "----------------OPERATIONS TEST--------------------" << RESET << std::endl;
 		std::map<char, int> lib1;
 		ft::map<char, int> my1;
-		std::cout << "find lib test: " << std::endl;
+		std::cout << GREEN << "find lib test: " << std::endl;
 		find_test(lib1);
-		std::cout << "find  my test: " << std::endl;
+		std::cout << RED << "find  my test: " << std::endl;
 		find_test(my1);
 	}
 
@@ -893,7 +874,7 @@ namespace map_test
 			else if (container.count(c) == 0)
 				std::cout << " is not an element of container" << std::endl;
 		}
-		std::cout << std::endl;
+		std::cout << RESET << std::endl;
 	}
 
 	template<typename T>
@@ -947,22 +928,22 @@ namespace map_test
 	{
 		std::map<char, int> lib;
 		ft::map<char, int> my;
-		std::cout << "Lib count test" << std::endl;
+		std::cout << GREEN <<  "Lib count test" << std::endl;
 		count_test(lib);
 
-		std::cout << " My count test" << std::endl;
+		std::cout << RED << " My count test" << std::endl;
 		count_test(my);
 
-		std::cout << "Lib lower/upper bounds test" << std::endl;
+		std::cout << GREEN << "Lib lower/upper bounds test" << std::endl;
 		lower_upper_bound(lib);
 
-		std::cout << " My lower/upper bounds test" << std::endl;
+		std::cout << RED << " My lower/upper bounds test" << std::endl;
 		lower_upper_bound(my);
 
-		std::cout << "Lib equal range test" << std::endl;
+		std::cout << GREEN <<  "Lib equal range test" << std::endl;
 		equal_range_test(lib);
 
-		std::cout << " My equal range test" << std::endl;
+		std::cout << RED << " My equal range test" << std::endl;
 		equal_range_test(my);
 	}
 }

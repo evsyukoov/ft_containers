@@ -802,6 +802,27 @@ namespace lst_test
 
 	void merge_test()
 	{
+		std::list<std::string> lib0;
+		ft::list<std::string> my0;
+		std::list<std::string> lib;
+		ft::list<std::string> my;
+		lib0.push_back("b");
+		lib0.push_back("e");
+		lib0.push_back("x");
+		lib.push_back("a");
+		my0.push_back("b");
+		my0.push_back("e");
+		my0.push_back("x");
+		my.push_back("a");
+		lib0.merge(lib);
+		my0.merge(my);
+		std::cout << GREEN;
+		std::cout << "After merge (default comp) lib: ";
+		printList(lib0);
+		std::cout << RED;
+		std::cout << "After merge (default comp)  my: ";
+		printList(my0);
+		
 		std::list<int> lib1;
 		std::list<int> lib2;
 		lib1.push_back(2);
